@@ -21,6 +21,27 @@
         "matches_repro_floor_atlas_v010": true,
         "k_note": "rows in repro-floor-atlas atlas.csv at scenario=forest_plot_extraction + rounding_mode=adaptive. NOT the unique-MA count (~6,386). Field name 'k' kept for cross-baseline schema consistency."
       }
+    },
+    "arac-resolve-v0.1.0": {
+      "paper_id": "arac-resolve-v0.1.0",
+      "commit_sha": "9b8b65941a8b4da02ebc5549642f453f6dc6b937",
+      "recorded_at": "2026-04-27T19:44:38Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "resolver_smoke_accuracy_pct": 100.0,
+        "smoke_fixture_size": 5,
+        "acronym_table_size": 8,
+        "vcr_cassette_count": 2,
+        "matches_plan_2a_design": true,
+        "note": "Plan 2A ships dispatch + cache + Europe PMC + CT.gov + acronym table. Tier-S/A/P classifiers are Plans 2B/2C/2D. Known issue: CT.gov v2 returns HTTP 403 to httpx (Cloudflare); cassette is synthetic from MCP-retrieved data. Plan 2B must rework the production CT.gov path."
+      }
     }
   }
 }
