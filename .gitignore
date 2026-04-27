@@ -15,15 +15,10 @@ sentinel-findings.md
 sentinel-findings.jsonl
 STUCK_FAILURES.md
 STUCK_FAILURES.jsonl
+review-findings.md
+review-findings.jsonl
 outputs/cache/
 
 # OS
 .DS_Store
 Thumbs.db
-# === Sentinel hook output (auto-added by install) ===
-STUCK_FAILURES.md
-STUCK_FAILURES.jsonl
-sentinel-findings.md
-sentinel-findings.jsonl
-review-findings.md
-review-findings.jsonl
