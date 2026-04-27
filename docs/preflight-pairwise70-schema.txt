@@ -1,0 +1,161 @@
+ARAC Pre-flight: Pairwise70 Schema Investigation
+Generated: 2026-04-27
+Scanned: 595 .rda files at C:/Projects/Pairwise70/data/
+
+=======================================================================
+SCHEMA (all 595 files share the same core column set)
+=======================================================================
+
+CORE COLUMNS (present in all files):
+  Analysis.group, Analysis.number, Analysis.name
+  Subgroup, Subgroup.number (some early files lack Subgroup.number)
+  Applicability
+  Study            <-- PRIMARY IDENTIFIER (Author Year or trial acronym)
+  Study.year
+  GIV.Mean, GIV.SE
+  Experimental.mean, Experimental.SD, Experimental.cases, Experimental.N
+  Control.mean, Control.SD, Control.cases, Control.N
+  O.E, Variance, Weight
+  Mean, CI.start, CI.end
+  Footnotes
+  review_doi       <-- Cochrane review DOI (e.g. "10.1002/14651858.CD000028.pub4")
+  review_url       <-- Cochrane review URL (absent in some recent files)
+
+EXTRA COLUMNS (newer files ~CD013xxx+):
+  Bias.arising.from.the.randomization.process..judgement.
+  Bias.arising.from.the.randomization.process..support.
+  Bias.due.to.deviations.from.intended.interventions..judgement.
+  Bias.due.to.deviations.from.intended.interventions..support.
+  Bias.due.to.missing.outcome.data..judgement.
+  Bias.due.to.missing.outcome.data..support.
+  Bias.in.measurement.of.the.outcome..judgement.
+  Bias.in.measurement.of.the.outcome..support.
+  Bias.in.selection.of.the.reported.result..judgement.
+  Bias.in.selection.of.the.reported.result..support.
+  Overall.bias..judgement.
+  Overall.bias..support.
+
+=======================================================================
+PER-FILE SCHEMA DUMP (10 sampled files)
+=======================================================================
+
+FILE: CD000028_pub4_data.rda
+  OBJECT: CD000028_pub4_data  rows=163
+  COLS: ['Analysis.group','Analysis.number','Analysis.name','Subgroup',
+         'Subgroup.number','Applicability','Study','Study.year','GIV.Mean',
+         'GIV.SE','Experimental.mean','Experimental.SD','Experimental.cases',
+         'Experimental.N','Control.mean','Control.SD','Control.cases','Control.N',
+         'O.E','Variance','Weight','Mean','CI.start','CI.end','Footnotes',
+         'review_url','review_doi']
+  Study examples: ['Carter 1970','Coope 1986','EWPHBPE 1989','HYVET 2008',
+                   'HYVET P 2003','MRC-O 1992','MRC-TMH 1985','SHEP 1991']
+  review_doi: 10.1002/14651858.CD000028.pub4
+
+FILE: CD000547_pub3_data.rda
+  OBJECT: CD000547_pub3_data  rows=282
+  (same core cols as above, no Subgroup.number, no ROB cols)
+  Study examples: ['Audebert 1994','Bushinsky 1999',...]
+  review_doi: 10.1002/14651858.CD000547.pub3
+
+FILE: CD004184_pub3_data.rda
+  OBJECT: CD004184_pub3_data  rows=186
+  Study examples: ['Zappe 2015','Liu J 2021','Pechere-Bertschi 1998',...]
+
+FILE: CD007130_pub5_data.rda
+  OBJECT: CD007130_pub5_data  rows=137
+  Study examples: ['Aamot 2014','Bell 1998','Dalal 2007','Hwang 2017',...]
+
+FILE: CD009730_pub3_data.rda
+  OBJECT: CD009730_pub3_data  rows=158
+  Study examples: ['Gold 1987','NCT02918409','McLaughlin 1983','BTS 1985',...]
+  NOTE: NCT ID appears directly as Study value
+
+FILE: CD012079_pub2_data.rda
+  OBJECT: CD012079_pub2_data  rows=567
+  Study examples: ['Carey 2009','Glazener 2005',...]
+  Footnotes: contain follow-up durations ("3 years","7-year data"), not IDs
+
+FILE: CD013764_pub2_data.rda
+  OBJECT: CD013764_pub2_data  rows=28
+  EXTRA COLS: Full ROB2 bias domain columns
+  Study examples: ['Endler 2022','Reynolds-Wright 2023','Bracken 2014',...]
+
+FILE: CD015176_pub2_data.rda
+  OBJECT: CD015176_pub2_data  rows=330
+  EXTRA COLS: Full ROB2 bias domain columns
+  Study examples: ['Agyemang 2016','Alimoradi 2022',...]
+
+FILE: CD016018_data.rda
+  OBJECT: CD016018_data  rows=211
+  Study examples: ['SUMMIT','SURMOUNT-1','SURMOUNT-2','SURMOUNT-3',...]
+  NOTE: All acronym-only labels, no Author Year
+  Footnotes: 1 row contains "NCT" but it's incidental text, not a clean NCT ID
+
+FILE: CD016347_data.rda
+  OBJECT: CD016347_data  rows=30
+  EXTRA COLS: Full ROB2 bias domain columns
+  Study examples: ['Bekker 2024','Kelley 2025']
+
+=======================================================================
+IDENTIFIER ANALYSIS (full 595-file scan, 108,732 trial-rows)
+=======================================================================
+
+Study label format breakdown (excluding Overall/Subgroup rows):
+  Author-Year format (e.g. "Smith 2010"):     86,389 rows  (79.5%)
+  NCT ID in Study field (e.g. "NCT02918409"): 1,146 rows   (1.1%)
+  Other (acronym, multi-author, unicode):     21,197 rows  (19.5%)
+
+Files with NCT IDs directly in Study column: 47 of 595 files
+  Examples: CD004406, CD006023, CD007639, CD008858, CD008940, CD009730,
+            CD009885, CD010216, CD010966, CD011120, CD011535, CD011762,
+            CD012182, CD012429, CD012586, CD012942, CD013232, CD013295,
+            CD013332, ... (47 total)
+
+Files with NCT IDs in Footnotes column: 2 of 595 files (incidental, not structured)
+
+review_doi: Present in all 595 files — identifies the Cochrane review, not
+            the individual trial.
+
+=======================================================================
+VERDICT: PARTIAL
+=======================================================================
+
+Rationale:
+- 79.5% of rows carry "AuthorYear" Study labels (e.g. "Smith 2010") which
+  are parseable bibliographic identifiers — first-author + year is sufficient
+  to query PubMed/Europe PMC for the trial record.
+- 1.1% carry explicit NCT IDs directly in the Study field.
+- 19.5% carry trial acronyms (e.g. "HYVET", "SUMMIT", "MRC-TMH") that lack
+  a first-author name — these require acronym→PubMed lookup or manual mapping.
+- No PMID, DOI, or ROR columns exist anywhere in the schema.
+- The schema is highly stable (same ~27 cols across all 595 files; newer files
+  add ROB2 bias domains but not new identifiers).
+
+=======================================================================
+RECOMMENDED DOWNSTREAM METADATA PATH
+=======================================================================
+
+Primary key: Study column (Author Year → PubMed lookup)
+  - Parse "Lastname YYYY" or "Lastname Initials YYYY" patterns.
+  - Query Europe PMC /search?query=auth:{lastname} AND pub_year:{year}
+    filtered to clinical trial type.
+  - Expect ~80% hit rate on first-author+year. Accept top-1 result when
+    title+year+trial type match. Flag ambiguous (>1 candidate) for review.
+
+Secondary key: NCT IDs (1.1% of rows, 47 files)
+  - Extract NCT IDs directly where Study matches r'NCT\d{6,8}'.
+  - CT.gov /api/query/full_studies?expr=NCT_ID gives country, sponsor,
+    and enrollment direct.
+
+Fallback for acronyms (19.5% of rows):
+  - Build a lookup table: known acronym → PMID or NCT.
+    MRC, HYVET, SHEP, HOPE, PEPI are well-known; ~200 distinct acronyms
+    estimated across the corpus.
+  - Alternatively: query PubMed with the acronym as title keyword.
+
+Do NOT rely on Footnotes — they contain follow-up durations and footnote
+text, not structured identifiers (with 2 trivial exceptions).
+
+The review_doi gives the Cochrane review DOI — useful for fetching the
+full review's reference list (Cochrane API or JATS XML) as a second-pass
+cross-check on Study→PMID mapping quality.

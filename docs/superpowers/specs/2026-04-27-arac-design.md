@@ -362,6 +362,18 @@ The Makerere cohort **verifies pre-classified data**, they do not perform raw ex
 
 Month 0 plan should produce: working classifier engine (Tier-S/A/P), working repool engine (passing repro-floor-atlas regression test), working RGS computation, atlas v0.1 scaffold, locked preregistration document, working verification UI, and a 50-MA pilot complete with measured IRR per tier.
 
+## Pre-flight finding (added 2026-04-27)
+
+A focused inspection of the Pairwise70 .rda corpus (`C:/Projects/Pairwise70/data/`, 595 review files, 108,732 trial-rows) returned **PARTIAL** verdict:
+
+- `Study` field is universally present but freeform: ~80.6% Author-Year (`"Smith 2010"`), ~1.1% explicit NCT IDs, ~19.5% trial acronyms (`"HYVET"`, `"SUMMIT"`).
+- No dedicated PMID, DOI, or ROR column.
+- `review_doi` is present in every file — gives a path to scrape Cochrane JATS reference lists for the hard 19%.
+
+**Implications for Plan 2 (Classifier):** the metadata-acquisition pipeline is multi-source — Author-Year parser → Europe PMC; NCT-direct → CT.gov; acronym table (~200 items); Cochrane JATS reference-list fallback. Confidence scoring per source. This is feasible but more elaborate than the spec body implies. The spec's claim that classification is "algorithmic" still holds; we now know the algorithm is staged. Schema dump for the record: `C:/Projects/arac/docs/preflight-pairwise70-schema.txt`.
+
+**Plan 1 is unaffected** — the repool engine reads only the statistical fields (`Experimental.cases`, `Control.N`, `GIV.Mean`, etc.), which the inspection confirmed are stable across all files.
+
 ## Open items for the implementation plan
 
 These are decisions deferred to the writing-plans phase:
