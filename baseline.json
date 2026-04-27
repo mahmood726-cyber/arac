@@ -1,4 +1,5 @@
 {
+  "_sentinel": "sentinel:skip-file — provenance record; local paths in extra.aact_* fields are documentation, not deployable code",
   "schema_version": "0.1",
   "records": {
     "arac-foundation-v0.0.1": {
@@ -41,6 +42,28 @@
         "vcr_cassette_count": 2,
         "matches_plan_2a_design": true,
         "note": "Plan 2A ships dispatch + cache + Europe PMC + CT.gov + acronym table. Tier-S/A/P classifiers are Plans 2B/2C/2D. Known issue: CT.gov v2 returns HTTP 403 to httpx (Cloudflare); cassette is synthetic from MCP-retrieved data. Plan 2B must rework the production CT.gov path."
+      }
+    },
+    "arac-tier-s-v0.2.0": {
+      "paper_id": "arac-tier-s-v0.2.0",
+      "commit_sha": "d513b102c05fd3fc9ac402fea8c279e175326611",
+      "recorded_at": "2026-04-27T21:00:28Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "tier_s_smoke_accuracy_pct": 100.0,
+        "smoke_fixture_size": 5,
+        "african_country_table_size": 56,
+        "matches_plan_2b_design": true,
+        "aact_path_resolution": "env-var (AACT_DSN/SQLITE/TSV_DIR/CSV_DIR) -> auto-discover YYYY-MM-DD subdirs under C:/Users/user/AACT or D:/AACT-storage/AACT -> fail closed",
+        "aact_snapshot_used": "C:/Users/user/AACT/2026-04-12 (TSV_DIR backend, pipe-delimited)",
+        "note": "Plan 2B replaces httpx CT.gov path (which 403'd via Cloudflare in Plan 2A) with AACT primary + Europe PMC affiliation fallback. KNOWN GAP: real-world MAs (e.g. CD000028 pre-NCT hypertension trials) give all INSUFFICIENT_DATA because Plan 2A's Europe PMC resolver does not always surface first_affiliation_raw for older trials. Plan 2C/2D should address this. Tier-A (authorship) and Tier-P (participants) classifiers remain in Plans 2C and 2D."
       }
     }
   }
