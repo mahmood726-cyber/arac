@@ -1,0 +1,39 @@
+{
+  "trials": [
+    {
+      "study_string": "HYVET 2008",
+      "expected_method": "acronym",
+      "expected_pmid": "18378519",
+      "expected_nct_id": null,
+      "comment": "Acronym in seed table — exercises ACRONYM path."
+    },
+    {
+      "study_string": "NCT02861534",
+      "expected_method": "nct_direct",
+      "expected_pmid": null,
+      "expected_nct_id": "NCT02861534",
+      "comment": "VICTORIA — exercises NCT_DIRECT path; cassette in Task 6."
+    },
+    {
+      "study_string": "PARADIGM-HF",
+      "expected_method": "acronym",
+      "expected_pmid": "25176015",
+      "expected_nct_id": "NCT01035255",
+      "comment": "Acronym with both PMID and NCT in seed."
+    },
+    {
+      "study_string": "ZZZNOTAREALSTUDY",
+      "expected_method": "failed",
+      "expected_pmid": null,
+      "expected_nct_id": null,
+      "comment": "Acronym shape but not in seed — must FAIL gracefully."
+    },
+    {
+      "study_string": "???",
+      "expected_method": "failed",
+      "expected_pmid": null,
+      "expected_nct_id": null,
+      "comment": "UNKNOWN form — must FAIL gracefully."
+    }
+  ]
+}
