@@ -1,4 +1,5 @@
 ARAC Pre-flight: Pairwise70 Schema Investigation
+# sentinel:skip-file — pre-flight diagnostic dump; local paths are DATA (not shipping code)
 Generated: 2026-04-27
 Scanned: 595 .rda files at C:/Projects/Pairwise70/data/
 

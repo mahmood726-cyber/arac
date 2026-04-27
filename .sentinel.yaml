@@ -1,0 +1,7 @@
+# Sentinel project config for ARAC.
+# Inherits global ruleset; this file only declares project-specific scope.
+project_id: arac
+exclude_paths:
+  - "outputs/cache/**"
+  - "docs/superpowers/**"  # spec/plan docs are review artefacts, not shipping code
+  - "docs/preflight-*.txt"  # pre-flight diagnostic dumps may contain local paths (review artefacts)
