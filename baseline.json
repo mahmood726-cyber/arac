@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.1",
+  "records": {
+    "arac-foundation-v0.0.1": {
+      "paper_id": "arac-foundation-v0.0.1",
+      "commit_sha": "0b8cc2c1987a1aee192c78ab9397c455a36ca58a",
+      "recorded_at": "2026-04-27T16:21:28Z",
+      "pooled_estimate": 14.3,
+      "k": 7545,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "reproducibility_binary": 12.89,
+        "reproducibility_continuous": 25.03,
+        "reproducibility_giv": 26.96,
+        "tolerance_target_pp": 0.5,
+        "matches_repro_floor_atlas_v010": true
+      }
+    }
+  }
+}
