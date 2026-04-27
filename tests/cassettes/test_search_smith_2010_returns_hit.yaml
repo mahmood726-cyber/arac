@@ -1,0 +1,73 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Host:
+      - www.ebi.ac.uk
+      User-Agent:
+      - arac/0.1
+    method: GET
+    uri: https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=AUTH%3A%22Smith%22%20AND%20PUB_YEAR%3A2010&format=json&pageSize=1&resultType=core
+  response:
+    body:
+      string: "{\"version\":\"6.9\",\"hitCount\":6951,\"nextCursorMark\":\"AoIIP4Vk+ig1MjU2MTYzOA==\",\"nextPageUrl\":\"https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=AUTH:\\\"Smith\\\"
+        AND PUB_YEAR:2010&cursorMark=AoIIP4Vk+ig1MjU2MTYzOA==&resultType=core&pageSize=1&format=json\",\"request\":{\"queryString\":\"AUTH:\\\"Smith\\\"
+        AND PUB_YEAR:2010\",\"resultType\":\"core\",\"cursorMark\":\"*\",\"pageSize\":1,\"sort\":\"\",\"synonym\":false},\"resultList\":{\"result\":[{\"id\":\"38588373\",\"source\":\"MED\",\"pmid\":\"38588373\",\"title\":\"Rapid
+        Changes in Teaching and Learning: The Response of Teachers and Students in
+        Dual Credit Courses to Online Learning During the COVID-19 Pandemic\",\"authorString\":\"Glennie
+        EJ, Smith WZ.\",\"authorList\":{\"author\":[{\"fullName\":\"Glennie EJ\",\"firstName\":\"Elizabeth
+        J.\",\"lastName\":\"Glennie\",\"initials\":\"EJ\"},{\"fullName\":\"Smith WZ\",\"firstName\":\"W.
+        Zach\",\"lastName\":\"Smith\",\"initials\":\"WZ\"}]},\"pubYear\":\"2010\",\"abstractText\":\"In
+        spring 2020, the COVID-19 pandemic forced schools to switch quickly to online
+        learning. Before then, Hawai\u02BBi had been expanding its dual credit program,
+        in which high school students could take courses that would yield both high
+        school and college credits. These dual credit programs require partnerships
+        between high schools and colleges. RTI International conducted a multi-method
+        analysis to examine the effect of this COVID-19\u2013based transition to online
+        learning on the dual credit, analyzing data from the state longitudinal data
+        system and conducting surveys and focus groups of the University of Hawai\u02BBi\u2019s
+        instructors, high school coordinators, and high school staff involved with
+        program. From spring 2020 to fall 2020, students took some dual enrollment
+        courses even though offerings and enrollment declined; offerings and enrollment
+        rebounded by spring 2021. The percentage of course-takers earning both high
+        school and college credit remained about the same during this transition.
+        Examining outcomes for student and school subgroups shows that male students
+        struggled more than female students did with enrollment during this transition,
+        and students in rural schools had a steeper decline in the rate of earning
+        both high school and college credits. However, both groups did begin to recover
+        by spring 2021.\",\"publicationStatus\":\"ppublish\",\"language\":\"eng\",\"pubTypeList\":{\"pubType\":[\"Review\"]},\"bookOrReportDetails\":{\"publisher\":\"RTI
+        Press, Research Triangle Park (NC)\",\"yearOfPublication\":2010,\"comprisingTitle\":\"RTI
+        Press Policy Brief\"},\"keywordList\":{\"keyword\":[\"Online Learning\",\"Covid-19\",\"Dual
+        Credit\"]},\"fullTextUrlList\":{\"fullTextUrl\":[{\"availability\":\"Free\",\"availabilityCode\":\"F\",\"documentStyle\":\"html\",\"site\":\"Europe_PMC\",\"url\":\"http://europepmc.org/books/NBK602468\"},{\"availability\":\"Free\",\"availabilityCode\":\"F\",\"documentStyle\":\"html\",\"site\":\"NCBI_Bookshelf\",\"url\":\"https://www.ncbi.nlm.nih.gov/books/NBK602468\"}]},\"isOpenAccess\":\"Y\",\"inEPMC\":\"Y\",\"inPMC\":\"Y\",\"hasPDF\":\"N\",\"hasBook\":\"Y\",\"bookid\":\"NBK602468\",\"hasSuppl\":\"N\",\"citedByCount\":0,\"hasData\":\"N\",\"hasReferences\":\"N\",\"hasTextMinedTerms\":\"Y\",\"hasDbCrossReferences\":\"N\",\"hasLabsLinks\":\"N\",\"hasEvaluations\":\"N\",\"authMan\":\"N\",\"epmcAuthMan\":\"N\",\"nihAuthMan\":\"N\",\"hasTMAccessionNumbers\":\"N\",\"dateOfCreation\":\"2023-11-01\",\"firstIndexDate\":\"2025-03-12\",\"firstPublicationDate\":\"2023-11-01\"}]}}"
+    headers:
+      Access-Control-Allow-Headers:
+      - Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Max-Age:
+      - '3600'
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 27 Apr 2026 19:29:51 GMT
+      Set-Cookie:
+      - JSESSIONID=589E675E4B3A59F8CCBF1C28402D8C95; Path=/europepmc/webservices/;
+        HttpOnly
+      Strict-Transport-Security:
+      - max-age=0
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1
