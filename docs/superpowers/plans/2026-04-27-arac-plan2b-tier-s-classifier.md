@@ -1273,3 +1273,9 @@ git tag -a v0.2.0 -m "Plan 2B complete — Tier-S classifier (AACT primary); Tie
 - **Cochrane JATS reference-list scrape** — long tail of acronym/Author-Year trials that AACT + Europe PMC miss; deferred to Plan 2B.5 if accuracy on real MAs proves inadequate
 - **Removing the Plan 2A `CTGovClient`** — kept as documented-broken fallback; future cleanup
 - **Confidence-score calibration** — current weights (0.97 AACT / 0.55 affiliation) are hand-set; Plan 2D's IRR run will calibrate against ground truth
+
+---
+
+## Deviations (appended during execution)
+
+**Task 1 (TSV backend + path auto-discovery):** The plan body specified three AACT backends (`POSTGRES`, `SQLITE`, `CSV_DIR`). The actual AACT install on this machine is **pipe-delimited TSV** (49 `.txt` files at `C:/Users/user/AACT/2026-04-12/`, snapshot date 2026-04-12). Added a `TSV_DIR` backend (delimiter='|') and auto-discovery for `YYYY-MM-DD` subdirectories under `C:/Users/user/AACT/` and `D:/AACT-storage/AACT/`. The original `CSV_DIR` backend stays for users who run the AACT CSV export. Resolution order: `AACT_DSN` → `AACT_SQLITE` → `AACT_TSV_DIR` → `AACT_CSV_DIR` → auto-discover (TSV) → fail closed. The pre-flight test was adapted to check `countries.txt` (columns `nct_id`, `name`, `removed`) as the primary Tier-S data source, plus `facilities.txt` as fallback — matching the actual AACT TSV schema rather than the original plan's postgres-only assumed schema. Sentinel skip-line markers were added on three docstring/error-message lines in `_aact_path.py` that contained local path examples; `docs/preflight-aact-schema.txt` received a `sentinel:skip-file` header consistent with the pre-existing `preflight-pairwise70-schema.txt` treatment.
