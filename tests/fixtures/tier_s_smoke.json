@@ -1,0 +1,33 @@
+{
+  "trials": [
+    {
+      "comment": "PARADIGM-HF — 47 active countries including South Africa, AACT lookup",
+      "nct_id": "NCT01035255",
+      "expected_tier_s": "african_site",
+      "expected_source": "aact"
+    },
+    {
+      "comment": "Author-Year with Uganda affiliation",
+      "first_affiliation_raw": "Makerere University, Kampala, Uganda",
+      "expected_tier_s": "african_site",
+      "expected_source": "affiliation"
+    },
+    {
+      "comment": "Author-Year with US affiliation (Stanford, no African match)",
+      "first_affiliation_raw": "Stanford University, Stanford, CA, USA",
+      "expected_tier_s": "no_african_site",
+      "expected_source": "affiliation"
+    },
+    {
+      "comment": "Author-Year with German affiliation (no African match)",
+      "first_affiliation_raw": "Charite Universitatsmedizin Berlin, Germany",
+      "expected_tier_s": "no_african_site",
+      "expected_source": "affiliation"
+    },
+    {
+      "comment": "Failed resolution (no NCT, no affiliation) — INSUFFICIENT",
+      "expected_tier_s": "insufficient_data",
+      "expected_source": "none"
+    }
+  ]
+}
