@@ -820,6 +820,16 @@ git commit -m "test(repool): 10-MA smoke regression vs repro-floor-atlas truth_p
 
 ---
 
+## Deviations (appended after implementation)
+
+**Task 4 (`k >= 1` instead of `k >= 2`):** Pairwise70 contains ~16% k=1 MAs (40/252 in first 20 reviews). The plan's `assert m.k >= 2` was an empirical error; corrected to `assert m.k >= 1`. Spec §3 step 4 has been updated to acknowledge this.
+
+**Task 9 (no `declared_dp` parameter):** The plan body for Task 9 specifies `headline_rates(atlas_csv, declared_dp)` with a `HEADLINE_DECLARED_DP` constant. **This was wrong.** The actual aggregation in `repro_floor_atlas/src/repro_floor_atlas/report.py::_headline_stats` filters by `scenario == "forest_plot_extraction"` AND `rounding_mode == "adaptive"`, then counts rows where `exceeds_adaptive == "True"` — no `declared_dp` filter exists. The shipped API is `headline_rates(atlas_csv)` with no second argument. Task 9 below still shows the original specification text for historical accuracy; refer to the actual `src/arac/regression.py` for the as-shipped API.
+
+**Task 6 (vendored math instead of imported):** The plan body specified an `_import_pool_function` that delegated to repro-floor-atlas. The shipped code instead vendors the 8 lines of inverse-variance fixed-effect math inline (see `src/arac/repool.py::_pool_fe`) with a comment pointing at `repro_floor_atlas/precision_floor.py:74-78`. Task 8's smoke regression confirms bit-identity (max delta 0.00e+00 across 9 MAs). Vendoring was chosen because the upstream function is private (`_pool_fixed_effect`), and importing private functions across packages is fragile.
+
+---
+
 ### Task 9: Full regression — reproduce 14.3% headline within ±0.5pp
 
 **This is the gating test.** Per ARAC spec §6 stopping rule: "Re-pool engine fails to reproduce repro-floor-atlas headline (within ±0.5pp) → halt, debug." If this test fails, do NOT proceed to Plan 2.

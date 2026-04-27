@@ -18,7 +18,8 @@
         "reproducibility_continuous": 25.03,
         "reproducibility_giv": 26.96,
         "tolerance_target_pp": 0.5,
-        "matches_repro_floor_atlas_v010": true
+        "matches_repro_floor_atlas_v010": true,
+        "k_note": "rows in repro-floor-atlas atlas.csv at scenario=forest_plot_extraction + rounding_mode=adaptive. NOT the unique-MA count (~6,386). Field name 'k' kept for cross-baseline schema consistency."
       }
     }
   }

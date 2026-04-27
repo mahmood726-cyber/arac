@@ -121,9 +121,16 @@ Every classification (Tier-S/A/P) is **algorithmically pre-populated** and then 
                                     ▼
         [4. African-subset pool computation]
         For each MA × Tier:
-        ┌─ if k_african ≥ 3 → REML+HKSJ+PI (per advanced-stats.md)
-        ├─ if k_african = 1-2 → ImpossibleMA primitive
-        └─ if k_african = 0  → flag as INVISIBLE for that tier
+        ┌─ if k_african ≥ 3 → REML+HKSJ+PI (Plan 3 production pooler;
+        │                       Plan 1 ships fixed-effect substrate)
+        ├─ if k_african = 2  → fixed-effect computable but flagged INVISIBLE
+        │                       (sensitivity reporting only)
+        ├─ if k_african = 1  → INVISIBLE; ImpossibleMA primitive (Plan 3)
+        └─ if k_african = 0  → INVISIBLE for that tier
+
+        Note: ~16% of Pairwise70 MAs are themselves k=1 even before African
+        sub-setting (discovered in Plan 1 Task 4). Such MAs are INVISIBLE at
+        every tier; the atlas reports them in the per-tier invisibility count.
                                     │
                                     ▼
         [5. RGS computation per MA × Tier]
