@@ -1,0 +1,69 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/124.0.0.0 Safari/537.36
+    method: GET
+    uri: https://clinicaltrials.gov/api/v2/studies/NCT02861534?format=json
+  response:
+    body:
+      string: '{"protocolSection": {"identificationModule": {"nctId": "NCT02861534",
+        "briefTitle": "A Study of Vericiguat in Participants With Heart Failure With
+        Reduced Ejection Fraction (HFrEF) (MK-1242-001)", "officialTitle": "A Randomized
+        Parallel-Group, Placebo-Controlled, Double-Blind, Event-Driven, Multi-Center
+        Pivotal Phase III Clinical Outcome Trial", "acronym": "VICTORIA"}, "statusModule":
+        {"overallStatus": "COMPLETED"}, "sponsorCollaboratorsModule": {"leadSponsor":
+        {"name": "Merck Sharp & Dohme LLC", "class": "INDUSTRY"}}, "contactsLocationsModule":
+        {"locations": [{"country": "Argentina", "city": "City", "status": "COMPLETED"},
+        {"country": "Australia", "city": "City", "status": "COMPLETED"}, {"country":
+        "Austria", "city": "City", "status": "COMPLETED"}, {"country": "Belgium",
+        "city": "City", "status": "COMPLETED"}, {"country": "Brazil", "city": "City",
+        "status": "COMPLETED"}, {"country": "Bulgaria", "city": "City", "status":
+        "COMPLETED"}, {"country": "Canada", "city": "City", "status": "COMPLETED"},
+        {"country": "Chile", "city": "City", "status": "COMPLETED"}, {"country": "China",
+        "city": "City", "status": "COMPLETED"}, {"country": "Colombia", "city": "City",
+        "status": "COMPLETED"}, {"country": "Croatia", "city": "City", "status": "COMPLETED"},
+        {"country": "Czech Republic", "city": "City", "status": "COMPLETED"}, {"country":
+        "Denmark", "city": "City", "status": "COMPLETED"}, {"country": "Finland",
+        "city": "City", "status": "COMPLETED"}, {"country": "France", "city": "City",
+        "status": "COMPLETED"}, {"country": "Germany", "city": "City", "status": "COMPLETED"},
+        {"country": "Greece", "city": "City", "status": "COMPLETED"}, {"country":
+        "Hungary", "city": "City", "status": "COMPLETED"}, {"country": "India", "city":
+        "City", "status": "COMPLETED"}, {"country": "Israel", "city": "City", "status":
+        "COMPLETED"}, {"country": "Italy", "city": "City", "status": "COMPLETED"},
+        {"country": "Japan", "city": "City", "status": "COMPLETED"}, {"country": "Korea,
+        Republic of", "city": "City", "status": "COMPLETED"}, {"country": "Latvia",
+        "city": "City", "status": "COMPLETED"}, {"country": "Lithuania", "city": "City",
+        "status": "COMPLETED"}, {"country": "Mexico", "city": "City", "status": "COMPLETED"},
+        {"country": "Netherlands", "city": "City", "status": "COMPLETED"}, {"country":
+        "New Zealand", "city": "City", "status": "COMPLETED"}, {"country": "Norway",
+        "city": "City", "status": "COMPLETED"}, {"country": "Peru", "city": "City",
+        "status": "COMPLETED"}, {"country": "Philippines", "city": "City", "status":
+        "COMPLETED"}, {"country": "Poland", "city": "City", "status": "COMPLETED"},
+        {"country": "Portugal", "city": "City", "status": "COMPLETED"}, {"country":
+        "Romania", "city": "City", "status": "COMPLETED"}, {"country": "Russian Federation",
+        "city": "City", "status": "COMPLETED"}, {"country": "Serbia", "city": "City",
+        "status": "COMPLETED"}, {"country": "South Africa", "city": "City", "status":
+        "COMPLETED"}, {"country": "Spain", "city": "City", "status": "COMPLETED"},
+        {"country": "Sweden", "city": "City", "status": "COMPLETED"}, {"country":
+        "Turkey", "city": "City", "status": "COMPLETED"}, {"country": "Ukraine", "city":
+        "City", "status": "COMPLETED"}, {"country": "United States", "city": "City",
+        "status": "COMPLETED"}]}}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+    status:
+      code: 200
+      message: OK
+    url: https://clinicaltrials.gov/api/v2/studies/NCT02861534?format=json
+version: 1
