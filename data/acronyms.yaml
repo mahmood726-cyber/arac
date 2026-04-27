@@ -1,0 +1,52 @@
+# ARAC acronym -> trial-identifier seed table.
+# Each entry: lookup-key (uppercase) -> metadata.
+# `source` field is required -- explains where the PMID/NCT was hand-verified from.
+# Add more acronyms as Pairwise70's 19% acronym tail demands.
+
+HYVET:
+  pmid: "18378519"
+  nct_id: null
+  full_name: "HYpertension in the Very Elderly Trial"
+  source: "Beckett NS et al, NEJM 2008 -- verified PMID via PubMed direct lookup"
+
+HOPE:
+  pmid: "10639539"
+  nct_id: null
+  full_name: "Heart Outcomes Prevention Evaluation"
+  source: "Yusuf S et al, NEJM 2000 -- verified PMID via PubMed direct lookup"
+
+SHEP:
+  pmid: "1675354"
+  nct_id: null
+  full_name: "Systolic Hypertension in the Elderly Program"
+  source: "SHEP Cooperative Research Group, JAMA 1991 -- verified PMID via PubMed"
+
+SUMMIT:
+  pmid: "27750038"
+  nct_id: "NCT01275144"
+  full_name: "Study to Understand Mortality and MorbidITy"
+  source: "Vestbo J et al, Lancet 2016 -- verified PMID + NCT via PubMed and CT.gov"
+
+ALLHAT:
+  pmid: "12479763"
+  nct_id: null
+  full_name: "Antihypertensive and Lipid-Lowering Treatment to Prevent Heart Attack Trial"
+  source: "ALLHAT Officers, JAMA 2002 -- verified PMID via PubMed direct lookup"
+
+PARADIGM-HF:
+  pmid: "25176015"
+  nct_id: "NCT01035255"
+  full_name: "Prospective Comparison of ARNI with ACEI to Determine Impact on Global Mortality and Morbidity in Heart Failure"
+  source: "McMurray JJV et al, NEJM 2014 -- verified via Entresto FDA dossier (DossierGap project ground truth)"
+
+VICTORIA:
+  pmid: "32222134"
+  nct_id: "NCT02861534"
+  full_name: "VerICiguaT global study in subjects with heart failure with reduced ejection fraction"
+  source: "Armstrong PW et al, NEJM 2020 -- verified via Verquvo FDA dossier (DossierGap project)"
+
+GRIPHON:
+  pmid: "26699168"
+  nct_id: "NCT01106014"
+  full_name: "Prostacyclin (PGI2) Receptor Agonist In Pulmonary Arterial Hypertension"
+  source: "Sitbon O et al, NEJM 2015 -- verified via Uptravi FDA dossier (DossierGap project)"
