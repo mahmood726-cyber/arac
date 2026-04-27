@@ -7,11 +7,22 @@ import pytest
 
 @pytest.fixture(scope="session")
 def pairwise70_dir() -> Path:
-    """Path to the Pairwise70 .rda data directory."""
-    p = Path("C:/Projects/Pairwise70/data")
-    if not p.is_dir():
-        pytest.skip(f"Pairwise70 data dir missing: {p}")
-    return p
+    """Path to the Pairwise70 .rda data directory.
+
+    Resolution order: $PAIRWISE70_DIR env var, then C:/Projects/Pairwise70/data,
+    then D:/Projects/Pairwise70/data. Skips test if none resolve.
+    """
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
+    try:
+        from inspect_rda import _data_dir
+    finally:
+        sys.path.pop(0)
+    try:
+        return _data_dir()
+    except RuntimeError as e:
+        pytest.skip(str(e))
 
 
 @pytest.fixture(scope="session")

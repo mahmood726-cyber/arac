@@ -32,7 +32,14 @@ _CANDIDATE_ROOTS = [
 def _data_dir() -> Path:
     env_override = os.environ.get("PAIRWISE70_DIR")
     if env_override:
-        return Path(env_override)
+        p = Path(env_override)
+        if not p.is_dir():
+            raise RuntimeError(
+                f"PAIRWISE70_DIR={env_override!r} is set but is not a directory. "
+                f"Either point it at a real Pairwise70 .rda dir, or unset it to "
+                f"fall back to C:/D: candidate discovery."
+            )
+        return p
     for candidate in _CANDIDATE_ROOTS:
         p = Path(candidate)
         if p.is_dir():
