@@ -82,3 +82,53 @@ def test_efetch_returns_full_author_list(tmp_path: Path) -> None:
     # Author with no affiliation gets affiliation=None.
     assert rec.authors[2].lastname == "Doe"
     assert rec.authors[2].affiliation is None
+
+
+def test_efetch_extracts_abstract(tmp_path: Path) -> None:
+    """PubMedRecord now carries abstract_text from the NLM XML's <AbstractText>."""
+    from arac.resolve.http_cache import HttpCache
+    cache = HttpCache(root=tmp_path, ttl_seconds=3600)
+    client = PubMedClient(cache_dir=tmp_path)
+    url = client._build_url("99999")
+    pubmed_xml = (
+        '<?xml version="1.0"?><PubmedArticleSet><PubmedArticle><MedlineCitation>'
+        '<PMID>99999</PMID><Article><AuthorList>'
+        '<Author><LastName>Test</LastName></Author>'
+        '</AuthorList>'
+        '<Abstract>'
+        '<AbstractText Label="BACKGROUND">Background paragraph.</AbstractText>'
+        '<AbstractText Label="METHODS">Methods paragraph.</AbstractText>'
+        '<AbstractText Label="RESULTS">Results paragraph including the cohort: 200 participants in Uganda and 100 in Kenya.</AbstractText>'
+        '</Abstract>'
+        '</Article></MedlineCitation></PubmedArticle></PubmedArticleSet>'
+    )
+    cache.set(url, b"", pubmed_xml.encode())
+    rec = client.efetch("99999")
+
+    assert rec is not None
+    assert rec.abstract_text is not None
+    # Multi-section abstracts get joined; should contain all three parts
+    assert "Background paragraph" in rec.abstract_text
+    assert "Methods paragraph" in rec.abstract_text
+    assert "Uganda" in rec.abstract_text
+    # Backwards compat: existing fields still populated
+    assert rec.first_author_lastname == "Test"
+
+
+def test_efetch_handles_missing_abstract(tmp_path: Path) -> None:
+    from arac.resolve.http_cache import HttpCache
+    cache = HttpCache(root=tmp_path, ttl_seconds=3600)
+    client = PubMedClient(cache_dir=tmp_path)
+    url = client._build_url("11111")
+    # NO <Abstract> element — old NLM records often lack one
+    pubmed_xml = (
+        '<?xml version="1.0"?><PubmedArticleSet><PubmedArticle><MedlineCitation>'
+        '<PMID>11111</PMID><Article><AuthorList>'
+        '<Author><LastName>Old</LastName></Author>'
+        '</AuthorList></Article></MedlineCitation></PubmedArticle></PubmedArticleSet>'
+    )
+    cache.set(url, b"", pubmed_xml.encode())
+    rec = client.efetch("11111")
+
+    assert rec is not None
+    assert rec.abstract_text is None

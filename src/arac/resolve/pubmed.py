@@ -52,6 +52,7 @@ class PubMedRecord:
     first_author_lastname: Optional[str]
     first_author_affiliation: Optional[str]
     authors: tuple[PubMedAuthor, ...] = field(default_factory=tuple)
+    abstract_text: Optional[str] = None
 
 
 class PubMedClient:
@@ -116,9 +117,26 @@ class PubMedClient:
         authors = tuple(self._parse_author(el) for el in author_els)
 
         first = authors[0] if authors else None
+
+        # Extract abstract — concatenate all <AbstractText> elements (some PubMed
+        # records have multi-section structured abstracts: BACKGROUND/METHODS/RESULTS).
+        abstract_els = article.findall(".//Abstract/AbstractText")
+        abstract_parts: list[str] = []
+        for el in abstract_els:
+            label = el.attrib.get("Label")
+            text = (el.text or "").strip()
+            if not text:
+                continue
+            if label:
+                abstract_parts.append(f"{label}: {text}")
+            else:
+                abstract_parts.append(text)
+        abstract_text = "\n\n".join(abstract_parts) if abstract_parts else None
+
         return PubMedRecord(
             pmid=pmid,
             first_author_lastname=first.lastname if first else None,
             first_author_affiliation=first.affiliation if first else None,
             authors=authors,
+            abstract_text=abstract_text,
         )
