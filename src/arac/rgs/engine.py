@@ -23,6 +23,7 @@ from typing import Optional
 
 from arac.bridge import MARecord
 from arac.repool import INVISIBILITY_THRESHOLD_K, PoolResult, repool_subset
+from arac.rgs.mcid import RecommendationState, classify_ci_vs_mcid, mcid_for_data_type
 
 
 _REPRODUCTION_THRESHOLD = 0.005  # |delta| > this → flagged non-reproducible (Plan 1)
@@ -66,6 +67,11 @@ class RGSResult:
     sign_flip: Optional[bool]              # True if subset sign differs from full
     heterogeneity_gap: Optional[bool]      # True if |subset_i2 - full_i2| > 0.25
 
+    # Recommendation-change metric (Plan 3A.2).
+    full_recommendation: Optional[RecommendationState] = None
+    subset_recommendation: Optional[RecommendationState] = None
+    recommendation_change: Optional[bool] = None
+
 
 def _ci_width(pool: PoolResult) -> Optional[float]:
     if pool.ci_lower is None or pool.ci_upper is None:
@@ -88,6 +94,10 @@ class RGSEngine:
         """Compute RGS for one (MA, Tier) pair given the trial-index subset."""
         full = repool_subset(record, tuple(range(record.k)))
         invisible = len(indices) < INVISIBILITY_THRESHOLD_K
+
+        # Compute full recommendation state (always, even when invisible).
+        mcid = mcid_for_data_type(record.data_type)
+        full_rec = classify_ci_vs_mcid(full.ci_lower, full.ci_upper, mcid)
 
         if invisible:
             return RGSResult(
@@ -112,6 +122,9 @@ class RGSEngine:
                 precision_gap_ratio=None,
                 sign_flip=None,
                 heterogeneity_gap=None,
+                full_recommendation=full_rec,
+                subset_recommendation=None,
+                recommendation_change=None,
             )
 
         subset = repool_subset(record, indices)
@@ -153,6 +166,13 @@ class RGSEngine:
         else:
             heterogeneity_gap = abs(subset.i2 - full.i2) > _HETEROGENEITY_THRESHOLD
 
+        # Recommendation change
+        subset_rec = classify_ci_vs_mcid(subset.ci_lower, subset.ci_upper, mcid)
+        if full_rec is not None and subset_rec is not None:
+            recommendation_change: Optional[bool] = (full_rec != subset_rec)
+        else:
+            recommendation_change = None
+
         return RGSResult(
             ma_id=record.ma_id,
             tier=tier,
@@ -175,4 +195,7 @@ class RGSEngine:
             precision_gap_ratio=precision_gap_ratio,
             sign_flip=sign_flip,
             heterogeneity_gap=heterogeneity_gap,
+            full_recommendation=full_rec,
+            subset_recommendation=subset_rec,
+            recommendation_change=recommendation_change,
         )

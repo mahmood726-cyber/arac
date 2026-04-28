@@ -140,3 +140,39 @@ def test_rgs_invisible_has_none_for_new_fields(pairwise70_dir: Path) -> None:
     assert result.subset_tau2 is None
     assert result.subset_i2 is None
     assert result.heterogeneity_gap is None
+
+
+def test_rgs_recommendation_state_populated_when_visible(pairwise70_dir: Path) -> None:
+    from arac.bridge import load_all_mas
+    from arac.rgs.engine import RGSEngine, RGSTier
+    from arac.rgs.mcid import RecommendationState
+    mas = load_all_mas(pairwise70_dir, max_reviews=5)
+    ma = next((m for m in mas if m.k >= 5), None)
+    assert ma is not None
+    engine = RGSEngine()
+    result = engine.compute(ma, RGSTier.SITE, indices=tuple(range(ma.k)))
+
+    assert result.invisible is False
+    assert result.full_recommendation in (
+        RecommendationState.BENEFIT, RecommendationState.UNCERTAIN, RecommendationState.HARM,
+    )
+    # Subset = full → recommendations match → no change
+    assert result.full_recommendation == result.subset_recommendation
+    assert result.recommendation_change is False
+
+
+def test_rgs_recommendation_change_invisible(pairwise70_dir: Path) -> None:
+    from arac.bridge import load_all_mas
+    from arac.rgs.engine import RGSEngine, RGSTier
+    mas = load_all_mas(pairwise70_dir, max_reviews=1)
+    ma = next((m for m in mas if m.k >= 3), None)
+    assert ma is not None
+    engine = RGSEngine()
+    result = engine.compute(ma, RGSTier.PARTICIPANT, indices=())  # invisible
+
+    assert result.invisible is True
+    # full_recommendation populated (we always compute full pool)
+    assert result.full_recommendation is not None
+    # subset and change are None
+    assert result.subset_recommendation is None
+    assert result.recommendation_change is None
