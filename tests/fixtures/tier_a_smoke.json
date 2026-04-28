@@ -1,0 +1,54 @@
+{
+  "trials": [
+    {
+      "comment": "First author at Makerere",
+      "pmid": "20001",
+      "authors": [
+        ["Mukasa", "Makerere University, Kampala, Uganda."],
+        ["Smith", "Stanford University, USA."]
+      ],
+      "expected_tier_a": "african_led",
+      "expected_position": "first"
+    },
+    {
+      "comment": "Senior author at Cape Town (first is US)",
+      "pmid": "20002",
+      "authors": [
+        ["Smith", "Harvard Medical School, Boston, MA, USA."],
+        ["Doe", "MIT, Cambridge, MA, USA."],
+        ["Naidoo", "University of Cape Town, South Africa."]
+      ],
+      "expected_tier_a": "african_led",
+      "expected_position": "senior"
+    },
+    {
+      "comment": "Both authors non-African",
+      "pmid": "20003",
+      "authors": [
+        ["McMurray", "BHF Glasgow Cardiovascular Research Centre, Glasgow, United Kingdom."],
+        ["Solomon", "Brigham and Women's Hospital, Boston, MA, USA."]
+      ],
+      "expected_tier_a": "not_african_led",
+      "expected_position": "none"
+    },
+    {
+      "comment": "Single author, US, not African",
+      "pmid": "20004",
+      "authors": [
+        ["Carter", "Department of Medicine, Vanderbilt University, Nashville, TN, USA."]
+      ],
+      "expected_tier_a": "not_african_led",
+      "expected_position": "none"
+    },
+    {
+      "comment": "PubMed has authors but no affiliation data → INSUFFICIENT",
+      "pmid": "20005",
+      "authors": [
+        ["Smith", null],
+        ["Doe", null]
+      ],
+      "expected_tier_a": "insufficient_data",
+      "expected_position": "none"
+    }
+  ]
+}
