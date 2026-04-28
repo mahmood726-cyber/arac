@@ -185,6 +185,38 @@
         "production_atlas_extraction_status": "deferred \u2014 runs via `python scripts/build_atlas.py --max-mas 6386 --tier-mode sap` when user authorizes ~$30 LLM cost",
         "note": "Plan 3A ships the RGS engine + atlas pipeline + CSV emitter. 3 of 5 spec metrics shipped; 2 deferred to Plan 3A.1. Atlas dashboard (HTML) is Plan 3B; verification UI is Plan 3C."
       }
+    },
+    "arac-dashboard-v0.6.0": {
+      "paper_id": "arac-dashboard-v0.6.0",
+      "commit_sha": "9e82e44dd56f0932458284ec817053b498fd035f",
+      "recorded_at": "2026-04-28T12:26:01Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "format": "single-file HTML, no external CDN, no build step",
+        "filters": [
+          "tier",
+          "visibility",
+          "reproduction_gap",
+          "ma_id_search"
+        ],
+        "summary_metrics": [
+          "total_rows",
+          "unique_mas",
+          "invisible_count",
+          "reproduction_gap_count",
+          "sign_flip_count"
+        ],
+        "matches_plan_3b_design": true,
+        "github_pages_ready": true,
+        "note": "Plan 3B ships the atlas dashboard. Reads outputs/atlas.csv, emits outputs/dashboard.html. Vanilla JS for filtering. Standard ARAC atlas pattern matching responder-floor-atlas/repro-floor-atlas. Plan 3A.1 (REML+MCID for remaining 2 metrics) and Plan 3C (verification UI) are next."
+      }
     }
   }
 }
