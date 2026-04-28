@@ -247,6 +247,43 @@
         "matches_plan_3a1_design": true,
         "note": "Plan 3A.1 ships 4 of 5 spec RGS metrics. Recommendation-change deferred to 3A.2 (needs preregistered per-condition MCID table)."
       }
+    },
+    "arac-recommendation-change-v0.8.0": {
+      "paper_id": "arac-recommendation-change-v0.8.0",
+      "commit_sha": "58eb7111832be86fdff6d70d8549fb3246c3fff8",
+      "recorded_at": "2026-04-28T15:29:26Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "metrics_complete": [
+          "reproduction_gap",
+          "precision_gap_ratio",
+          "sign_flip",
+          "heterogeneity_gap",
+          "recommendation_change"
+        ],
+        "spec_5_of_5_metrics_shipped": true,
+        "mcid_defaults_by_data_type": {
+          "binary": "abs(log(0.80)) approx 0.2231",
+          "continuous": "0.2 (Cohen's small SMD)",
+          "giv": "abs(log(0.85)) approx 0.1625"
+        },
+        "recommendation_states": [
+          "benefit",
+          "uncertain",
+          "harm"
+        ],
+        "recommendation_change_logic": "full_state != subset_state",
+        "atlas_csv_columns": 24,
+        "matches_plan_3a2_design": true,
+        "note": "Plan 3A.2 ships the 5th and final spec RGS metric. v0.8.0 = '5-of-5 metrics complete' milestone. MCID defaults are placeholders; Plan 4 governance will lock per-condition values via preregistered MCID CSV."
+      }
     }
   }
 }
