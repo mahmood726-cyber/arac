@@ -105,6 +105,30 @@
         "approach": "PubMed efetch full author list + african_countries substring scan on first AND senior author affiliations",
         "note": "Plan 2C reuses Plan 2B's african_countries alias scan applied separately to first-author and senior-author (last) affiliations. AFRICAN_LED if either matches; NOT_AFRICAN_LED if both have data and neither matches; INSUFFICIENT if data missing. Inherits Plan 2A.1's pre-1995 NLM affiliation gap. Tier-P (Plan 2D) is the next classifier."
       }
+    },
+    "arac-word-boundary-v0.3.1": {
+      "paper_id": "arac-word-boundary-v0.3.1",
+      "commit_sha": "ae4cbb0674ef973cb2e361a479beaa38530b802e",
+      "recorded_at": "2026-04-28T10:33:04Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "fix_type": "word_boundary_regex",
+        "false_positives_eliminated": [
+          "car_in_caribbean",
+          "car_in_cardiology",
+          "car_in_cardiovascular"
+        ],
+        "regression_test_added": "test_hyvet_no_false_positive",
+        "matches_plan_2c1_design": true,
+        "note": "Plan 2C.1 fixes the substring-match false-positive discovered during Plan 2C's CLI smoke. african_countries module now compiles a single word-boundary regex from all aliases and exposes scan_for_african_country() as the public matcher. tier_s and tier_a both use this. Plan 2D's IRR validation will quantify any remaining alias-level false-positive rate."
+      }
     }
   }
 }
