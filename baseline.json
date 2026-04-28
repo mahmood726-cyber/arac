@@ -1,5 +1,5 @@
 {
-  "_sentinel": "sentinel:skip-file — provenance record; local paths in extra.aact_* fields are documentation, not deployable code",
+  "_sentinel": "sentinel:skip-file \u00e2\u20ac\u201d provenance record; local paths in extra.aact_* fields are documentation, not deployable code",
   "schema_version": "0.1",
   "records": {
     "arac-foundation-v0.0.1": {
@@ -64,6 +64,26 @@
         "aact_path_resolution": "env-var (AACT_DSN/SQLITE/TSV_DIR/CSV_DIR) -> auto-discover YYYY-MM-DD subdirs under C:/Users/user/AACT or D:/AACT-storage/AACT -> fail closed",
         "aact_snapshot_used": "C:/Users/user/AACT/2026-04-12 (TSV_DIR backend, pipe-delimited)",
         "note": "Plan 2B replaces httpx CT.gov path (which 403'd via Cloudflare in Plan 2A) with AACT primary + Europe PMC affiliation fallback. KNOWN GAP: real-world MAs (e.g. CD000028 pre-NCT hypertension trials) give all INSUFFICIENT_DATA because Plan 2A's Europe PMC resolver does not always surface first_affiliation_raw for older trials. Plan 2C/2D should address this. Tier-A (authorship) and Tier-P (participants) classifiers remain in Plans 2C and 2D."
+      }
+    },
+    "arac-pubmed-enrichment-v0.2.1": {
+      "paper_id": "arac-pubmed-enrichment-v0.2.1",
+      "commit_sha": "dfc0d79e6161779d963469b6b23fb37adffdd520",
+      "recorded_at": "2026-04-28T09:36:35Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "pubmed_efetch_added": true,
+        "matches_plan_2a1_design": true,
+        "test_trial_used": "Crowther 1999 (PMID 10558928, Glaxo Wellcome USA) \u2014 Carter 1970 substituted because pre-1990s NLM records lack structured AffiliationInfo",
+        "known_nlm_limitation": "Trials published before ~late-1990s lack structured <AffiliationInfo> in PubMed XML. Plan 2A.1 enrichment only helps trials from ~1995 onward. Pre-1995 trials remain INSUFFICIENT for affiliation-based Tier-S \u2014 Plan 2C/2D should use alternative paths (Cochrane JATS reference list scrape, or accept INSUFFICIENT for that vintage).",
+        "note": "Plan 2A.1 closes the EPMC-affiliation-empty gap by adding PubMed E-Utilities efetch enrichment. Real-world Crowther 1999 test passes; resolver returns first_affiliation_raw populated when EPMC's affiliation is None and PubMed has one."
       }
     }
   }
