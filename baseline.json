@@ -151,6 +151,40 @@
         "spec_triad_complete": "S/A/P all three classifiers shipped (Plans 2B + 2C + 2D)",
         "note": "Plan 2D ships Tier-P capability with mock-tested code paths; full Pairwise70 atlas extraction (~60K trials x Opus 4.7 ~$30 amortized with caching) deferred to dedicated batch session. IRR validation against 50-trial human gold standard is Plan 2E (requires Mahmood + PhD-cohort cohort-assembly first)."
       }
+    },
+    "arac-rgs-engine-v0.5.0": {
+      "paper_id": "arac-rgs-engine-v0.5.0",
+      "commit_sha": "768860ea90b27ec586f3f800c58f37fee9d62d4d",
+      "recorded_at": "2026-04-28T12:06:27Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "metrics_shipped": [
+          "reproduction_gap",
+          "precision_gap_ratio",
+          "sign_flip"
+        ],
+        "metrics_deferred": [
+          "heterogeneity_gap (needs REML)",
+          "recommendation_change (needs MCID table)"
+        ],
+        "tier_modes": [
+          "s_only",
+          "sa_only",
+          "sap"
+        ],
+        "default_tier_mode": "sa_only",
+        "atlas_csv_columns": 16,
+        "matches_plan_3a_design": true,
+        "production_atlas_extraction_status": "deferred \u2014 runs via `python scripts/build_atlas.py --max-mas 6386 --tier-mode sap` when user authorizes ~$30 LLM cost",
+        "note": "Plan 3A ships the RGS engine + atlas pipeline + CSV emitter. 3 of 5 spec metrics shipped; 2 deferred to Plan 3A.1. Atlas dashboard (HTML) is Plan 3B; verification UI is Plan 3C."
+      }
     }
   }
 }
