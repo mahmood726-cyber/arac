@@ -183,9 +183,10 @@ function renderTable(rows) {
     return;
   }
   var cols = ['ma_id', 'tier', 'k_total', 'k_subset', 'invisible',
-              'reproduction_gap', 'precision_gap_ratio', 'sign_flip', 'heterogeneity_gap'];
+              'reproduction_gap', 'precision_gap_ratio', 'sign_flip', 'heterogeneity_gap',
+              'recommendation_change'];
   var colLabels = ['MA', 'Tier', 'k', 'k African', 'Invisible',
-                   'Repro gap', 'CI ratio', 'Sign flip', 'Het gap'];
+                   'Repro gap', 'CI ratio', 'Sign flip', 'Het gap', 'Rec change'];
   var html = '<table><thead><tr>';
   for (var i = 0; i < cols.length; i++) {
     html += '<th data-col="' + cols[i] + '">' + colLabels[i] + '</th>';
@@ -200,7 +201,7 @@ function renderTable(rows) {
     html += '<td>' + r.k_subset + '</td>';
     if (r.invisible === 'True') {
       html += '<td><span class="tag tag-invisible">invisible</span></td>';
-      html += '<td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td>';
+      html += '<td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td>';
     } else {
       html += '<td>visible</td>';
       var repTag = r.reproduction_gap === 'True'
@@ -215,6 +216,9 @@ function renderTable(rows) {
       var hetTag = r.heterogeneity_gap === 'True'
         ? '<span class="tag tag-flag">het gap</span>' : 'no gap';
       html += '<td>' + hetTag + '</td>';
+      var recTag = r.recommendation_change === 'True'
+        ? '<span class="tag tag-flag">rec change</span>' : 'no change';
+      html += '<td>' + recTag + '</td>';
     }
     html += '</tr>';
   }

@@ -26,6 +26,7 @@ class AtlasSummary:
     reproduction_gap_count: int = 0
     sign_flip_count: int = 0
     heterogeneity_gap_count: int = 0
+    recommendation_change_count: int = 0
 
 
 def load_atlas(path: Path) -> list[dict[str, str]]:
@@ -47,6 +48,7 @@ def summarize(rows: list[dict[str, str]]) -> AtlasSummary:
     reproduction_gap = sum(1 for r in rows if r.get("reproduction_gap") == "True")
     sign_flip = sum(1 for r in rows if r.get("sign_flip") == "True")
     heterogeneity_gap = sum(1 for r in rows if r.get("heterogeneity_gap") == "True")
+    recommendation_change = sum(1 for r in rows if r.get("recommendation_change") == "True")
     unique_mas = len({r["ma_id"] for r in rows})
 
     return AtlasSummary(
@@ -57,6 +59,7 @@ def summarize(rows: list[dict[str, str]]) -> AtlasSummary:
         reproduction_gap_count=reproduction_gap,
         sign_flip_count=sign_flip,
         heterogeneity_gap_count=heterogeneity_gap,
+        recommendation_change_count=recommendation_change,
     )
 
 
@@ -76,6 +79,7 @@ def _summary_html(summary: AtlasSummary) -> str:
         ("Reproduction gap (|&Delta;|&gt;0.005)", summary.reproduction_gap_count),
         ("Sign flip", summary.sign_flip_count),
         ("Heterogeneity gap (|&Delta;I&sup2;|&gt;25pp)", summary.heterogeneity_gap_count),
+        ("Rec change (CI crosses MCID zone)", summary.recommendation_change_count),
     ]
     cells = "".join(
         f'<div class="metric"><div class="metric-value">{v}</div>'

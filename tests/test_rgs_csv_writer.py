@@ -7,6 +7,7 @@ from pathlib import Path
 
 from arac.rgs.csv_writer import RGS_COLUMNS, write_rgs_rows
 from arac.rgs.engine import RGSResult, RGSTier
+from arac.rgs.mcid import RecommendationState
 
 
 def test_write_csv_round_trip(tmp_path: Path) -> None:
@@ -22,6 +23,9 @@ def test_write_csv_round_trip(tmp_path: Path) -> None:
             subset_tau2=0.05, subset_i2=0.55,
             reproduction_gap=True, precision_gap_ratio=2.0, sign_flip=False,
             heterogeneity_gap=True,
+            full_recommendation=RecommendationState.BENEFIT,
+            subset_recommendation=RecommendationState.UNCERTAIN,
+            recommendation_change=True,
         ),
         RGSResult(
             ma_id="CD000028__A1", tier=RGSTier.AUTHORSHIP,
@@ -34,6 +38,9 @@ def test_write_csv_round_trip(tmp_path: Path) -> None:
             subset_tau2=None, subset_i2=None,
             reproduction_gap=None, precision_gap_ratio=None, sign_flip=None,
             heterogeneity_gap=None,
+            full_recommendation=RecommendationState.BENEFIT,
+            subset_recommendation=None,
+            recommendation_change=None,
         ),
     ]
     out = tmp_path / "atlas.csv"
@@ -44,7 +51,7 @@ def test_write_csv_round_trip(tmp_path: Path) -> None:
         loaded = list(reader)
 
     assert len(loaded) == 2
-    assert len(RGS_COLUMNS) == 21
+    assert len(RGS_COLUMNS) == 24
     assert reader.fieldnames == list(RGS_COLUMNS)
     # First row
     assert loaded[0]["ma_id"] == "CD000028__A1"
@@ -56,6 +63,9 @@ def test_write_csv_round_trip(tmp_path: Path) -> None:
     assert loaded[0]["subset_tau2"] != ""
     assert loaded[0]["subset_i2"] != ""
     assert loaded[0]["heterogeneity_gap"] == "True"
+    assert loaded[0]["full_recommendation"] == "benefit"
+    assert loaded[0]["subset_recommendation"] == "uncertain"
+    assert loaded[0]["recommendation_change"] == "True"
     # Second row (invisible) should have empty cells for None metric fields.
     assert loaded[1]["invisible"] == "True"
     assert loaded[1]["reproduction_gap"] == ""
@@ -63,3 +73,6 @@ def test_write_csv_round_trip(tmp_path: Path) -> None:
     assert loaded[1]["subset_tau2"] == ""
     assert loaded[1]["subset_i2"] == ""
     assert loaded[1]["heterogeneity_gap"] == ""
+    assert loaded[1]["full_recommendation"] == "benefit"
+    assert loaded[1]["subset_recommendation"] == ""
+    assert loaded[1]["recommendation_change"] == ""

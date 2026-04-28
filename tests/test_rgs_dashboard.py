@@ -15,7 +15,7 @@ def _seed_atlas(path: Path) -> None:
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=list(RGS_COLUMNS))
         writer.writeheader()
-        # MA1 site: visible, no reproduction gap, no heterogeneity gap
+        # MA1 site: visible, no reproduction gap, no heterogeneity gap, no rec change
         writer.writerow({
             "ma_id": "MA1", "tier": "site",
             "k_total": "10", "k_subset": "5", "invisible": "False",
@@ -27,6 +27,8 @@ def _seed_atlas(path: Path) -> None:
             "subset_tau2": "0.02", "subset_i2": "0.30",
             "reproduction_gap": "False", "precision_gap_ratio": "1.4",
             "sign_flip": "False", "heterogeneity_gap": "False",
+            "full_recommendation": "uncertain", "subset_recommendation": "uncertain",
+            "recommendation_change": "False",
         })
         # MA1 authorship: invisible (k_subset=1)
         writer.writerow({
@@ -40,8 +42,10 @@ def _seed_atlas(path: Path) -> None:
             "subset_tau2": "", "subset_i2": "",
             "reproduction_gap": "", "precision_gap_ratio": "", "sign_flip": "",
             "heterogeneity_gap": "",
+            "full_recommendation": "uncertain", "subset_recommendation": "",
+            "recommendation_change": "",
         })
-        # MA2 site: visible, has reproduction gap + sign flip + heterogeneity gap
+        # MA2 site: visible, has reproduction gap + sign flip + heterogeneity gap + rec change
         writer.writerow({
             "ma_id": "MA2", "tier": "site",
             "k_total": "8", "k_subset": "3", "invisible": "False",
@@ -53,6 +57,8 @@ def _seed_atlas(path: Path) -> None:
             "subset_tau2": "0.15", "subset_i2": "0.80",
             "reproduction_gap": "True", "precision_gap_ratio": "2.0",
             "sign_flip": "True", "heterogeneity_gap": "True",
+            "full_recommendation": "harm", "subset_recommendation": "uncertain",
+            "recommendation_change": "True",
         })
 
 
@@ -83,6 +89,8 @@ def test_summarize_basic_counts(tmp_path: Path) -> None:
     assert summary.sign_flip_count == 1
     # 1 of 2 visible rows has heterogeneity_gap=True (MA2 site).
     assert summary.heterogeneity_gap_count == 1
+    # 1 of 2 visible rows has recommendation_change=True (MA2 site).
+    assert summary.recommendation_change_count == 1
 
 
 def test_summarize_empty(tmp_path: Path) -> None:
@@ -122,6 +130,8 @@ def test_render_dashboard_produces_self_contained_html(tmp_path: Path) -> None:
     assert "2" in html  # unique_mas = 2 (also appears elsewhere in template; fine)
     # The dashboard should mention heterogeneity
     assert "heterogeneity" in html.lower() or "het" in html.lower()
+    # The dashboard should mention recommendation
+    assert "rec" in html.lower()
 
 
 def test_render_dashboard_empty_atlas_placeholder(tmp_path: Path) -> None:

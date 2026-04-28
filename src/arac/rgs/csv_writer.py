@@ -33,6 +33,9 @@ RGS_COLUMNS = (
     "precision_gap_ratio",
     "sign_flip",
     "heterogeneity_gap",
+    "full_recommendation",
+    "subset_recommendation",
+    "recommendation_change",
 )
 
 
@@ -44,6 +47,15 @@ def _cell(value: Optional[object]) -> str:
         return str(value)
     if isinstance(value, float):
         return repr(value)  # full precision for atlas consumers
+    return str(value)
+
+
+def _enum_cell(value: Optional[object]) -> str:
+    """Serialize an Enum by its .value; None → empty string; fallback → str()."""
+    if value is None:
+        return ""
+    if hasattr(value, "value"):
+        return str(value.value)
     return str(value)
 
 
@@ -70,6 +82,9 @@ def _row_to_dict(r: RGSResult) -> dict[str, str]:
         "precision_gap_ratio": _cell(r.precision_gap_ratio),
         "sign_flip": _cell(r.sign_flip),
         "heterogeneity_gap": _cell(r.heterogeneity_gap),
+        "full_recommendation": _enum_cell(r.full_recommendation),
+        "subset_recommendation": _enum_cell(r.subset_recommendation),
+        "recommendation_change": _cell(r.recommendation_change),
     }
 
 
