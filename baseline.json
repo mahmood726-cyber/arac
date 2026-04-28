@@ -85,6 +85,26 @@
         "known_nlm_limitation": "Trials published before ~late-1990s lack structured <AffiliationInfo> in PubMed XML. Plan 2A.1 enrichment only helps trials from ~1995 onward. Pre-1995 trials remain INSUFFICIENT for affiliation-based Tier-S \u2014 Plan 2C/2D should use alternative paths (Cochrane JATS reference list scrape, or accept INSUFFICIENT for that vintage).",
         "note": "Plan 2A.1 closes the EPMC-affiliation-empty gap by adding PubMed E-Utilities efetch enrichment. Real-world Crowther 1999 test passes; resolver returns first_affiliation_raw populated when EPMC's affiliation is None and PubMed has one."
       }
+    },
+    "arac-tier-a-v0.3.0": {
+      "paper_id": "arac-tier-a-v0.3.0",
+      "commit_sha": "096c7ab512dd9310f6547b8cc84bf119c5103d5a",
+      "recorded_at": "2026-04-28T10:13:32Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "tier_a_smoke_accuracy_pct": 100.0,
+        "smoke_fixture_size": 5,
+        "matches_plan_2c_design": true,
+        "approach": "PubMed efetch full author list + african_countries substring scan on first AND senior author affiliations",
+        "note": "Plan 2C reuses Plan 2B's african_countries alias scan applied separately to first-author and senior-author (last) affiliations. AFRICAN_LED if either matches; NOT_AFRICAN_LED if both have data and neither matches; INSUFFICIENT if data missing. Inherits Plan 2A.1's pre-1995 NLM affiliation gap. Tier-P (Plan 2D) is the next classifier."
+      }
     }
   }
 }
