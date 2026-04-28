@@ -27,7 +27,7 @@ from enum import Enum
 from typing import Optional
 
 from arac.classify.aact import AACTClient
-from arac.classify.african_countries import _load_aliases, is_african_country
+from arac.classify.african_countries import is_african_country, scan_for_african_country
 from arac.resolve.resolver import ResolvedMetadata
 
 
@@ -97,16 +97,9 @@ class TierSClassifier:
             # NCT present but AACT has no active-country rows — fall through to
             # affiliation, then INSUFFICIENT.
 
-        # --- Source 2: Affiliation substring scan (case-insensitive) ---
+        # --- Source 2: Affiliation word-boundary scan (Plan 2C.1) ---
         if meta.first_affiliation_raw:
-            aliases = _load_aliases()
-            aff_lower = meta.first_affiliation_raw.lower()
-            # Scan all aliases; pick first match (order is set-iteration, but any
-            # African alias match is sufficient to classify AFRICAN_SITE).
-            matched_alias = next(
-                (alias for alias in aliases if alias in aff_lower),
-                None,
-            )
+            matched_alias = scan_for_african_country(meta.first_affiliation_raw)
             if matched_alias:
                 return TierSResult(
                     trial_id=meta.trial_id,

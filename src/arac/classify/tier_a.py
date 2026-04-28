@@ -19,7 +19,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Optional
 
-from arac.classify.african_countries import _load_aliases
+from arac.classify.african_countries import scan_for_african_country
 from arac.resolve.pubmed import PubMedClient
 from arac.resolve.resolver import ResolvedMetadata
 
@@ -43,19 +43,6 @@ class TierAResult:
     matched_position: AuthorPosition
     confidence: float
     matched_country: Optional[str]
-
-
-def _scan_for_african_country(affiliation: str) -> Optional[str]:
-    """Return the matched alias (lowercase) if any African country alias is a
-    substring of `affiliation`, else None."""
-    if not affiliation:
-        return None
-    aliases = _load_aliases()
-    aff_lower = affiliation.lower()
-    for alias in aliases:
-        if alias in aff_lower:
-            return alias
-    return None
 
 
 class TierAClassifier:
@@ -98,8 +85,8 @@ class TierAClassifier:
                 matched_country=None,
             )
 
-        first_match = _scan_for_african_country(first_aff) if first_aff else None
-        senior_match = _scan_for_african_country(senior_aff) if senior_aff else None
+        first_match = scan_for_african_country(first_aff) if first_aff else None
+        senior_match = scan_for_african_country(senior_aff) if senior_aff else None
 
         if first_match:
             return TierAResult(
