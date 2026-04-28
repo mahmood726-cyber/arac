@@ -25,6 +25,7 @@ from arac.resolve.acronyms import AcronymEntry, lookup_acronym
 from arac.resolve.ctgov import CTGovClient, CTGovStudy
 from arac.resolve.europepmc import EuropePMCClient, EuropePMCHit
 from arac.resolve.parser import StudyForm, parse_study_string
+from arac.resolve.pubmed import PubMedClient
 
 
 class ResolutionMethod(Enum):
@@ -51,6 +52,7 @@ class StudyResolver:
     def __init__(self, cache_dir: Path) -> None:
         self._epmc = EuropePMCClient(cache_dir=cache_dir / "europepmc")
         self._ctgov = CTGovClient(cache_dir=cache_dir / "ctgov")
+        self._pubmed = PubMedClient(cache_dir=cache_dir / "pubmed")
 
     def _from_acronym(self, trial: TrialRow, entry: AcronymEntry) -> ResolvedMetadata:
         return ResolvedMetadata(
@@ -79,6 +81,11 @@ class StudyResolver:
         )
 
     def _from_europepmc(self, trial: TrialRow, hit: EuropePMCHit) -> ResolvedMetadata:
+        affiliation = hit.first_affiliation_raw
+        if affiliation is None and hit.pmid:
+            pubmed_record = self._pubmed.efetch(hit.pmid)
+            if pubmed_record is not None and pubmed_record.first_author_affiliation:
+                affiliation = pubmed_record.first_author_affiliation
         return ResolvedMetadata(
             trial_id=trial.trial_id,
             method=ResolutionMethod.AUTHOR_YEAR,
@@ -87,7 +94,7 @@ class StudyResolver:
             nct_id=None,
             title=hit.title,
             first_author=hit.first_author,
-            first_affiliation_raw=hit.first_affiliation_raw,
+            first_affiliation_raw=affiliation,
             country_list=(),
         )
 
