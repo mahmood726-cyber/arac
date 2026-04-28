@@ -18,6 +18,7 @@ STUCK_FAILURES.jsonl
 review-findings.md
 review-findings.jsonl
 outputs/cache/
+outputs/*.csv
 
 # OS
 .DS_Store
