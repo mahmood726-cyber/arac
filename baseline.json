@@ -217,6 +217,36 @@
         "github_pages_ready": true,
         "note": "Plan 3B ships the atlas dashboard. Reads outputs/atlas.csv, emits outputs/dashboard.html. Vanilla JS for filtering. Standard ARAC atlas pattern matching responder-floor-atlas/repro-floor-atlas. Plan 3A.1 (REML+MCID for remaining 2 metrics) and Plan 3C (verification UI) are next."
       }
+    },
+    "arac-heterogeneity-gap-v0.7.0": {
+      "paper_id": "arac-heterogeneity-gap-v0.7.0",
+      "commit_sha": "464147c2eb5d227a21e00f93d52b3a37e52cbae3",
+      "recorded_at": "2026-04-28T14:47:16Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "metrics_shipped_now": [
+          "reproduction_gap",
+          "precision_gap_ratio",
+          "sign_flip",
+          "heterogeneity_gap"
+        ],
+        "metrics_remaining": [
+          "recommendation_change (needs MCID table \u2014 Plan 3A.2)"
+        ],
+        "tau2_method": "REML / Paule-Mandel iteration (per advanced-stats.md: never use DL for k<10)",
+        "i2_method": "Higgins & Thompson 2002 eq. 9 (typical within-study variance formulation)",
+        "heterogeneity_gap_threshold_pp": 25,
+        "atlas_csv_columns": 21,
+        "matches_plan_3a1_design": true,
+        "note": "Plan 3A.1 ships 4 of 5 spec RGS metrics. Recommendation-change deferred to 3A.2 (needs preregistered per-condition MCID table)."
+      }
     }
   }
 }
