@@ -129,6 +129,28 @@
         "matches_plan_2c1_design": true,
         "note": "Plan 2C.1 fixes the substring-match false-positive discovered during Plan 2C's CLI smoke. african_countries module now compiles a single word-boundary regex from all aliases and exposes scan_for_african_country() as the public matcher. tier_s and tier_a both use this. Plan 2D's IRR validation will quantify any remaining alias-level false-positive rate."
       }
+    },
+    "arac-tier-p-v0.4.0": {
+      "paper_id": "arac-tier-p-v0.4.0",
+      "commit_sha": "b62cd20ed7fed4b8ad43615f191bf310182e9a08",
+      "recorded_at": "2026-04-28T11:06:45Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "approach": "LLM-based structured extraction via Anthropic SDK messages.parse() with Pydantic ParticipantGeography schema; 50% African-participant threshold.",
+        "default_model": "claude-opus-4-7",
+        "model_override_env": "ARAC_TIER_P_MODEL",
+        "prompt_caching": "ephemeral cache_control on stable system prompt for ~10x cost savings",
+        "disk_caching": "LLMCache keyed by (model, system_hash, user_hash); 90-day TTL",
+        "spec_triad_complete": "S/A/P all three classifiers shipped (Plans 2B + 2C + 2D)",
+        "note": "Plan 2D ships Tier-P capability with mock-tested code paths; full Pairwise70 atlas extraction (~60K trials x Opus 4.7 ~$30 amortized with caching) deferred to dedicated batch session. IRR validation against 50-trial human gold standard is Plan 2E (requires Mahmood + PhD-cohort cohort-assembly first)."
+      }
     }
   }
 }
