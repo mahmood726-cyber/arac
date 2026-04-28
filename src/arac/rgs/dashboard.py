@@ -7,9 +7,14 @@ produce the data shown in the dashboard's headline section.
 from __future__ import annotations
 
 import csv
+import json
 from collections import Counter
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
+from string import Template
+
+from arac.rgs.html_template import TEMPLATE
 
 
 @dataclass(frozen=True)
@@ -49,4 +54,38 @@ def summarize(rows: list[dict[str, str]]) -> AtlasSummary:
         invisible_count=invisible,
         reproduction_gap_count=reproduction_gap,
         sign_flip_count=sign_flip,
+    )
+
+
+def _summary_html(summary: AtlasSummary) -> str:
+    """Render the summary section as an HTML fragment."""
+    if summary.total_rows == 0:
+        return (
+            '<div class="summary"><h2>Summary</h2>'
+            '<div class="placeholder">The atlas is empty. Run '
+            '<code>python scripts/build_atlas.py</code> to populate it.</div>'
+            '</div>'
+        )
+    metrics = [
+        ("Total rows", summary.total_rows),
+        ("Unique MAs", summary.unique_mas),
+        ("Invisible (insufficient African data)", summary.invisible_count),
+        ("Reproduction gap (|&Delta;|&gt;0.005)", summary.reproduction_gap_count),
+        ("Sign flip", summary.sign_flip_count),
+    ]
+    cells = "".join(
+        f'<div class="metric"><div class="metric-value">{v}</div>'
+        f'<div class="metric-label">{label}</div></div>'
+        for label, v in metrics
+    )
+    return f'<div class="summary"><h2>Summary</h2><div class="summary-row">{cells}</div></div>'
+
+
+def render_dashboard(rows: list[dict[str, str]], summary: AtlasSummary) -> str:
+    """Render the full dashboard HTML. Returns the file content as a string."""
+    return Template(TEMPLATE).substitute(
+        atlas_data_json=json.dumps(rows, ensure_ascii=False),
+        generated_at=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        row_count=len(rows),
+        summary=_summary_html(summary),
     )
