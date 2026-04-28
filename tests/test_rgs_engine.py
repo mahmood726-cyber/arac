@@ -53,3 +53,29 @@ def test_rgs_empty_subset_invisible(pairwise70_dir: Path) -> None:
     assert result.invisible is True
     assert result.k_subset == 0
     assert result.reproduction_gap is None
+
+
+def test_rgs_detects_gap_on_skewed_subset(pairwise70_dir: Path) -> None:
+    """Pick an MA with k>=6, take only the first half as the 'tier subset'.
+    The subset pool will likely differ from the full pool — verify metrics fire.
+    """
+    mas = load_all_mas(pairwise70_dir, max_reviews=10)
+    ma = next((m for m in mas if m.k >= 6 and m.data_type == "binary"), None)
+    if ma is None:
+        pytest.skip("no binary MA with k>=6 found in first 10 reviews")
+
+    engine = RGSEngine()
+    half = ma.k // 2
+    result = engine.compute(
+        ma, RGSTier.SITE, indices=tuple(range(half)),
+    )
+    assert result.invisible is False
+    assert result.k_subset == half
+
+    # All metric fields populated (not None).
+    assert result.reproduction_gap is not None
+    assert result.precision_gap_ratio is not None
+    assert result.sign_flip is not None
+
+    # Precision gap should be > 1 (smaller subset → wider CI).
+    assert result.precision_gap_ratio > 1.0
