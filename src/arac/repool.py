@@ -49,7 +49,8 @@ class PoolResult:
     se: Optional[float]
     ci_lower: Optional[float]
     ci_upper: Optional[float]
-    tau2: Optional[float]             # None for fixed-effect; populated by Plan 3's REML pooler
+    tau2: Optional[float]             # REML τ²; populated for k>=2
+    i2: Optional[float]               # Higgins & Thompson I²; populated for k>=2
 
 
 def _slice_inputs(inputs: MAInputs, indices: tuple[int, ...]) -> MAInputs:
@@ -103,6 +104,72 @@ def _yi_vi(inputs: MAInputs) -> tuple[np.ndarray, np.ndarray]:
     raise ValueError(f"unknown data_type: {inputs.data_type}")
 
 
+def _reml_tau2(
+    yi: np.ndarray,
+    vi: np.ndarray,
+    max_iter: int = 100,
+    tol: float = 1e-8,
+) -> float:
+    """REML estimator for between-study variance τ². Iterative Paule-Mandel style.
+
+    On each iteration:
+      w_i  = 1 / (v_i + τ²)
+      μ̂   = Σ w_i y_i / Σ w_i
+      τ²_new = max(0, Σ w_i² ((y_i − μ̂)² − v_i) / Σ w_i²)
+
+    Per advanced-stats.md: REML is preferred over DL for k<10. We iterate
+    until convergence (|τ²_new - τ²| < tol).
+
+    Returns: τ² (clamped to [0, +inf)).
+    """
+    yi = np.asarray(yi, dtype=float)
+    vi = np.asarray(vi, dtype=float)
+    if len(yi) < 2:
+        return 0.0
+
+    tau2 = 0.0
+    for _ in range(max_iter):
+        w = 1.0 / (vi + tau2)
+        mu = float(np.sum(w * yi) / np.sum(w))
+        residuals_sq = (yi - mu) ** 2
+        # Paule-Mandel / REML iteration
+        numerator = float(np.sum(w**2 * (residuals_sq - vi)))
+        denominator = float(np.sum(w**2))
+        if denominator == 0:
+            break
+        tau2_new = max(0.0, numerator / denominator)
+        if abs(tau2_new - tau2) < tol:
+            tau2 = tau2_new
+            break
+        tau2 = tau2_new
+    return tau2
+
+
+def _compute_i2(yi: np.ndarray, vi: np.ndarray, tau2: float) -> float:
+    """Higgins & Thompson I² statistic (2002, eq. 9 typical within-study variance).
+
+    I² = τ² / (τ² + s²)
+    where s² = (k-1) Σ w_i / [(Σ w_i)² − Σ w_i²], w_i = 1/v_i.
+
+    Returns a value in [0.0, 1.0].
+    """
+    yi = np.asarray(yi, dtype=float)
+    vi = np.asarray(vi, dtype=float)
+    if len(yi) < 2:
+        return 0.0
+    vi_safe = np.where(vi > 0, vi, np.finfo(float).eps)
+    w = 1.0 / vi_safe
+    sum_w = float(np.sum(w))
+    sum_w_sq = float(np.sum(w**2))
+    denom = sum_w**2 - sum_w_sq
+    if denom <= 0:
+        return 0.0
+    s_sq = (len(yi) - 1) * sum_w / denom
+    if (tau2 + s_sq) <= 0:
+        return 0.0
+    return float(tau2 / (tau2 + s_sq))
+
+
 def _pool_fe(yi: np.ndarray, vi: np.ndarray) -> tuple[float, float]:
     """Inverse-variance fixed-effect pool. Returns (pooled_estimate, se).
     Bit-identical to repro_floor_atlas/precision_floor.py:_pool_fixed_effect."""
@@ -122,12 +189,15 @@ def repool_subset(record: MARecord, indices: tuple[int, ...]) -> PoolResult:
     if k_subset < 2:
         return PoolResult(
             ma_id=record.ma_id, k_subset=k_subset, invisible=invisible,
-            pooled_estimate=None, se=None, ci_lower=None, ci_upper=None, tau2=None,
+            pooled_estimate=None, se=None, ci_lower=None, ci_upper=None,
+            tau2=None, i2=None,
         )
 
     sliced = _slice_inputs(record.inputs, indices)
     yi, vi = _yi_vi(sliced)
     pooled, se = _pool_fe(yi, vi)
+    tau2 = _reml_tau2(yi, vi)
+    i2 = _compute_i2(yi, vi, tau2)
     return PoolResult(
         ma_id=record.ma_id,
         k_subset=k_subset,
@@ -136,5 +206,6 @@ def repool_subset(record: MARecord, indices: tuple[int, ...]) -> PoolResult:
         se=se,
         ci_lower=pooled - 1.96 * se,
         ci_upper=pooled + 1.96 * se,
-        tau2=None,  # fixed-effect: tau^2 not estimated in Plan 1
+        tau2=tau2,
+        i2=i2,
     )
