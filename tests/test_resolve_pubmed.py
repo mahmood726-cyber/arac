@@ -41,3 +41,44 @@ def test_efetch_invalid_pmid(tmp_path: Path) -> None:
     cache.set(url, b"", b'<?xml version="1.0"?><PubmedArticleSet></PubmedArticleSet>')
     record = client.efetch("999999999")
     assert record is None
+
+
+def test_efetch_returns_full_author_list(tmp_path: Path) -> None:
+    """PubMedRecord now carries authors: list[PubMedAuthor]. authors[0] should
+    match the legacy first_author_* fields for backwards compat."""
+    from arac.resolve.http_cache import HttpCache
+    from arac.resolve.pubmed import PubMedAuthor
+
+    cache = HttpCache(root=tmp_path, ttl_seconds=3600)
+    client = PubMedClient(cache_dir=tmp_path)
+    url = client._build_url("12345")
+    pubmed_xml = (
+        '<?xml version="1.0"?><PubmedArticleSet><PubmedArticle><MedlineCitation>'
+        '<PMID>12345</PMID><Article><AuthorList>'
+        '<Author><LastName>Smith</LastName><ForeName>J</ForeName>'
+        '<AffiliationInfo><Affiliation>Stanford University, USA.</Affiliation></AffiliationInfo></Author>'
+        '<Author><LastName>Mukasa</LastName><ForeName>R</ForeName>'
+        '<AffiliationInfo><Affiliation>Makerere University, Kampala, Uganda.</Affiliation></AffiliationInfo></Author>'
+        '<Author><LastName>Doe</LastName><ForeName>A</ForeName></Author>'
+        '</AuthorList></Article></MedlineCitation></PubmedArticle></PubmedArticleSet>'
+    )
+    cache.set(url, b"", pubmed_xml.encode())
+    rec = client.efetch("12345")
+
+    assert rec is not None
+    # Backwards compat
+    assert rec.first_author_lastname == "Smith"
+    assert rec.first_author_affiliation is not None
+    assert "Stanford" in rec.first_author_affiliation
+
+    # New: full author list
+    assert isinstance(rec.authors, tuple)
+    assert len(rec.authors) == 3
+    assert all(isinstance(a, PubMedAuthor) for a in rec.authors)
+    assert rec.authors[0].lastname == "Smith"
+    assert rec.authors[1].lastname == "Mukasa"
+    assert rec.authors[1].affiliation is not None
+    assert "Uganda" in rec.authors[1].affiliation
+    # Author with no affiliation gets affiliation=None.
+    assert rec.authors[2].lastname == "Doe"
+    assert rec.authors[2].affiliation is None

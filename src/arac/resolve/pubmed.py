@@ -13,12 +13,20 @@ client treats HTTP 429 / 503 as transient and falls through to None rather
 than raising -- callers (the composite resolver) treat None as "enrichment
 unavailable" and continue with the original Europe PMC affiliation (which
 may itself be None -- that's fine, Tier-S handles it).
+
+PubMedRecord carries:
+- pmid (legacy)
+- first_author_lastname / first_author_affiliation (legacy, populated from authors[0])
+- authors: tuple[PubMedAuthor, ...] (new in Plan 2C — full ordered author list)
+
+The authors tuple is the source of truth; first_author_* fields are derived at
+parse time. Last author = authors[-1] when len(authors) >= 1.
 """
 
 from __future__ import annotations
 
 import xml.etree.ElementTree as ET
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
@@ -32,10 +40,18 @@ _DEFAULT_TTL_SECONDS = 30 * 24 * 3600
 
 
 @dataclass(frozen=True)
+class PubMedAuthor:
+    lastname: Optional[str]
+    forename: Optional[str]
+    affiliation: Optional[str]
+
+
+@dataclass(frozen=True)
 class PubMedRecord:
     pmid: str
     first_author_lastname: Optional[str]
     first_author_affiliation: Optional[str]
+    authors: tuple[PubMedAuthor, ...] = field(default_factory=tuple)
 
 
 class PubMedClient:
@@ -50,6 +66,16 @@ class PubMedClient:
 
     def _build_url(self, pmid: str) -> str:
         return f"{_BASE_URL}?db=pubmed&id={pmid}&retmode=xml"
+
+    def _parse_author(self, author_el: ET.Element) -> PubMedAuthor:
+        lastname_el = author_el.find("LastName")
+        forename_el = author_el.find("ForeName")
+        affiliation_el = author_el.find("AffiliationInfo/Affiliation")
+        return PubMedAuthor(
+            lastname=lastname_el.text.strip() if lastname_el is not None and lastname_el.text else None,
+            forename=forename_el.text.strip() if forename_el is not None and forename_el.text else None,
+            affiliation=affiliation_el.text.strip() if affiliation_el is not None and affiliation_el.text else None,
+        )
 
     def efetch(self, pmid: str) -> Optional[PubMedRecord]:
         url = self._build_url(pmid)
@@ -86,25 +112,13 @@ class PubMedClient:
         if article is None:
             return None
 
-        # Extract first author + their first AffiliationInfo/Affiliation.
-        first_author = article.find(".//AuthorList/Author")
-        lastname_el = first_author.find("LastName") if first_author is not None else None
-        affiliation_el = (
-            first_author.find("AffiliationInfo/Affiliation")
-            if first_author is not None
-            else None
-        )
+        author_els = article.findall(".//AuthorList/Author")
+        authors = tuple(self._parse_author(el) for el in author_els)
 
+        first = authors[0] if authors else None
         return PubMedRecord(
             pmid=pmid,
-            first_author_lastname=(
-                lastname_el.text.strip()
-                if lastname_el is not None and lastname_el.text
-                else None
-            ),
-            first_author_affiliation=(
-                affiliation_el.text.strip()
-                if affiliation_el is not None and affiliation_el.text
-                else None
-            ),
+            first_author_lastname=first.lastname if first else None,
+            first_author_affiliation=first.affiliation if first else None,
+            authors=authors,
         )
