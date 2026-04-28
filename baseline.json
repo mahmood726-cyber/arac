@@ -284,6 +284,32 @@
         "matches_plan_3a2_design": true,
         "note": "Plan 3A.2 ships the 5th and final spec RGS metric. v0.8.0 = '5-of-5 metrics complete' milestone. MCID defaults are placeholders; Plan 4 governance will lock per-condition values via preregistered MCID CSV."
       }
+    },
+    "arac-verification-ui-v0.9.0": {
+      "paper_id": "arac-verification-ui-v0.9.0",
+      "commit_sha": "746101416254f122a6d97feab0e142196d2e0cc6",
+      "recorded_at": "2026-04-28T16:34:29Z",
+      "pooled_estimate": null,
+      "k": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "se": null,
+      "tau2": null,
+      "i2": null,
+      "q": null,
+      "extra": {
+        "verification_pattern": "RapidMeta v11.8 auto-confirm",
+        "ui_storage": "browser localStorage (per-user, per-browser)",
+        "ui_export": "JSON download for offline dual-confirm reconciliation",
+        "labels_csv_columns": 21,
+        "moral_architecture": "cohort verifies pre-classified data (per feedback_makerere_student_workload.md), does NOT do raw extraction",
+        "matches_plan_3c_design": true,
+        "deferred": [
+          "adjudication compare view (Plan 3C.1 if needed)",
+          "build_trial_labels.py batch runner from Pairwise70 (currently --from-labels mode only)"
+        ],
+        "note": "Plan 3C ships the verification UI pattern. Per-trial labels CSV format defined; UI reads it; localStorage persists decisions. Batch labels generator from Pairwise70 + classifiers stubbed -- dedicated user-driven batch run when authorized."
+      }
     }
   }
 }
