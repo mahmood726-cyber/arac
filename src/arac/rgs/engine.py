@@ -26,6 +26,7 @@ from arac.repool import INVISIBILITY_THRESHOLD_K, PoolResult, repool_subset
 
 
 _REPRODUCTION_THRESHOLD = 0.005  # |delta| > this → flagged non-reproducible (Plan 1)
+_HETEROGENEITY_THRESHOLD = 0.25  # I² delta in absolute (proportion) terms
 
 
 class RGSTier(Enum):
@@ -48,17 +49,22 @@ class RGSResult:
     full_se: Optional[float]
     full_ci_lower: Optional[float]
     full_ci_upper: Optional[float]
+    full_tau2: Optional[float]             # REML τ² for full pool
+    full_i2: Optional[float]              # I² for full pool
 
     # Subset-pool stats (None if invisible).
     subset_pooled_estimate: Optional[float]
     subset_se: Optional[float]
     subset_ci_lower: Optional[float]
     subset_ci_upper: Optional[float]
+    subset_tau2: Optional[float]           # REML τ² for subset; None if invisible
+    subset_i2: Optional[float]            # I² for subset; None if invisible
 
     # RGS metrics (None if invisible).
     reproduction_gap: Optional[bool]       # True if |subset - full| > 0.005
     precision_gap_ratio: Optional[float]   # subset_ci_width / full_ci_width
     sign_flip: Optional[bool]              # True if subset sign differs from full
+    heterogeneity_gap: Optional[bool]      # True if |subset_i2 - full_i2| > 0.25
 
 
 def _ci_width(pool: PoolResult) -> Optional[float]:
@@ -94,13 +100,18 @@ class RGSEngine:
                 full_se=full.se,
                 full_ci_lower=full.ci_lower,
                 full_ci_upper=full.ci_upper,
+                full_tau2=full.tau2,
+                full_i2=full.i2,
                 subset_pooled_estimate=None,
                 subset_se=None,
                 subset_ci_lower=None,
                 subset_ci_upper=None,
+                subset_tau2=None,
+                subset_i2=None,
                 reproduction_gap=None,
                 precision_gap_ratio=None,
                 sign_flip=None,
+                heterogeneity_gap=None,
             )
 
         subset = repool_subset(record, indices)
@@ -136,6 +147,12 @@ class RGSEngine:
                 subset.pooled_estimate, full.pooled_estimate
             )
 
+        # Heterogeneity gap
+        if full.i2 is None or subset.i2 is None:
+            heterogeneity_gap: Optional[bool] = None
+        else:
+            heterogeneity_gap = abs(subset.i2 - full.i2) > _HETEROGENEITY_THRESHOLD
+
         return RGSResult(
             ma_id=record.ma_id,
             tier=tier,
@@ -146,11 +163,16 @@ class RGSEngine:
             full_se=full.se,
             full_ci_lower=full.ci_lower,
             full_ci_upper=full.ci_upper,
+            full_tau2=full.tau2,
+            full_i2=full.i2,
             subset_pooled_estimate=subset.pooled_estimate,
             subset_se=subset.se,
             subset_ci_lower=subset.ci_lower,
             subset_ci_upper=subset.ci_upper,
+            subset_tau2=subset.tau2,
+            subset_i2=subset.i2,
             reproduction_gap=reproduction_gap,
             precision_gap_ratio=precision_gap_ratio,
             sign_flip=sign_flip,
+            heterogeneity_gap=heterogeneity_gap,
         )
