@@ -15,16 +15,18 @@ def _seed_atlas(path: Path) -> None:
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=list(RGS_COLUMNS))
         writer.writeheader()
-        # MA1 site: visible, no reproduction gap
+        # MA1 site: visible, no reproduction gap, no heterogeneity gap
         writer.writerow({
             "ma_id": "MA1", "tier": "site",
             "k_total": "10", "k_subset": "5", "invisible": "False",
             "full_pooled_estimate": "-0.1", "full_se": "0.05",
             "full_ci_lower": "-0.2", "full_ci_upper": "0.0",
+            "full_tau2": "0.01", "full_i2": "0.25",
             "subset_pooled_estimate": "-0.12", "subset_se": "0.07",
             "subset_ci_lower": "-0.26", "subset_ci_upper": "0.02",
+            "subset_tau2": "0.02", "subset_i2": "0.30",
             "reproduction_gap": "False", "precision_gap_ratio": "1.4",
-            "sign_flip": "False",
+            "sign_flip": "False", "heterogeneity_gap": "False",
         })
         # MA1 authorship: invisible (k_subset=1)
         writer.writerow({
@@ -32,20 +34,25 @@ def _seed_atlas(path: Path) -> None:
             "k_total": "10", "k_subset": "1", "invisible": "True",
             "full_pooled_estimate": "-0.1", "full_se": "0.05",
             "full_ci_lower": "-0.2", "full_ci_upper": "0.0",
+            "full_tau2": "0.01", "full_i2": "0.25",
             "subset_pooled_estimate": "", "subset_se": "",
             "subset_ci_lower": "", "subset_ci_upper": "",
+            "subset_tau2": "", "subset_i2": "",
             "reproduction_gap": "", "precision_gap_ratio": "", "sign_flip": "",
+            "heterogeneity_gap": "",
         })
-        # MA2 site: visible, has reproduction gap + sign flip
+        # MA2 site: visible, has reproduction gap + sign flip + heterogeneity gap
         writer.writerow({
             "ma_id": "MA2", "tier": "site",
             "k_total": "8", "k_subset": "3", "invisible": "False",
             "full_pooled_estimate": "0.05", "full_se": "0.02",
             "full_ci_lower": "0.01", "full_ci_upper": "0.09",
+            "full_tau2": "0.0", "full_i2": "0.05",
             "subset_pooled_estimate": "-0.08", "subset_se": "0.04",
             "subset_ci_lower": "-0.16", "subset_ci_upper": "0.0",
+            "subset_tau2": "0.15", "subset_i2": "0.80",
             "reproduction_gap": "True", "precision_gap_ratio": "2.0",
-            "sign_flip": "True",
+            "sign_flip": "True", "heterogeneity_gap": "True",
         })
 
 
@@ -74,6 +81,8 @@ def test_summarize_basic_counts(tmp_path: Path) -> None:
     # 1 of 2 visible rows has reproduction_gap=True (MA2 site).
     assert summary.reproduction_gap_count == 1
     assert summary.sign_flip_count == 1
+    # 1 of 2 visible rows has heterogeneity_gap=True (MA2 site).
+    assert summary.heterogeneity_gap_count == 1
 
 
 def test_summarize_empty(tmp_path: Path) -> None:
@@ -111,6 +120,8 @@ def test_render_dashboard_produces_self_contained_html(tmp_path: Path) -> None:
     # The summary section has the basic counts
     assert "3" in html  # total_rows = 3
     assert "2" in html  # unique_mas = 2 (also appears elsewhere in template; fine)
+    # The dashboard should mention heterogeneity
+    assert "heterogeneity" in html.lower() or "het" in html.lower()
 
 
 def test_render_dashboard_empty_atlas_placeholder(tmp_path: Path) -> None:

@@ -16,18 +16,24 @@ def test_write_csv_round_trip(tmp_path: Path) -> None:
             k_total=10, k_subset=3, invisible=False,
             full_pooled_estimate=-0.12, full_se=0.05,
             full_ci_lower=-0.22, full_ci_upper=-0.02,
+            full_tau2=0.01, full_i2=0.25,
             subset_pooled_estimate=-0.15, subset_se=0.10,
             subset_ci_lower=-0.35, subset_ci_upper=0.05,
+            subset_tau2=0.05, subset_i2=0.55,
             reproduction_gap=True, precision_gap_ratio=2.0, sign_flip=False,
+            heterogeneity_gap=True,
         ),
         RGSResult(
             ma_id="CD000028__A1", tier=RGSTier.AUTHORSHIP,
             k_total=10, k_subset=1, invisible=True,
             full_pooled_estimate=-0.12, full_se=0.05,
             full_ci_lower=-0.22, full_ci_upper=-0.02,
+            full_tau2=0.01, full_i2=0.25,
             subset_pooled_estimate=None, subset_se=None,
             subset_ci_lower=None, subset_ci_upper=None,
+            subset_tau2=None, subset_i2=None,
             reproduction_gap=None, precision_gap_ratio=None, sign_flip=None,
+            heterogeneity_gap=None,
         ),
     ]
     out = tmp_path / "atlas.csv"
@@ -38,13 +44,22 @@ def test_write_csv_round_trip(tmp_path: Path) -> None:
         loaded = list(reader)
 
     assert len(loaded) == 2
+    assert len(RGS_COLUMNS) == 21
     assert reader.fieldnames == list(RGS_COLUMNS)
     # First row
     assert loaded[0]["ma_id"] == "CD000028__A1"
     assert loaded[0]["tier"] == "site"
     assert loaded[0]["invisible"] == "False"
     assert loaded[0]["reproduction_gap"] == "True"
+    assert loaded[0]["full_tau2"] != ""
+    assert loaded[0]["full_i2"] != ""
+    assert loaded[0]["subset_tau2"] != ""
+    assert loaded[0]["subset_i2"] != ""
+    assert loaded[0]["heterogeneity_gap"] == "True"
     # Second row (invisible) should have empty cells for None metric fields.
     assert loaded[1]["invisible"] == "True"
     assert loaded[1]["reproduction_gap"] == ""
     assert loaded[1]["subset_pooled_estimate"] == ""
+    assert loaded[1]["subset_tau2"] == ""
+    assert loaded[1]["subset_i2"] == ""
+    assert loaded[1]["heterogeneity_gap"] == ""

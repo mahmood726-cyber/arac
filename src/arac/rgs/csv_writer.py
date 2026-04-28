@@ -21,13 +21,18 @@ RGS_COLUMNS = (
     "full_se",
     "full_ci_lower",
     "full_ci_upper",
+    "full_tau2",
+    "full_i2",
     "subset_pooled_estimate",
     "subset_se",
     "subset_ci_lower",
     "subset_ci_upper",
+    "subset_tau2",
+    "subset_i2",
     "reproduction_gap",
     "precision_gap_ratio",
     "sign_flip",
+    "heterogeneity_gap",
 )
 
 
@@ -53,13 +58,18 @@ def _row_to_dict(r: RGSResult) -> dict[str, str]:
         "full_se": _cell(r.full_se),
         "full_ci_lower": _cell(r.full_ci_lower),
         "full_ci_upper": _cell(r.full_ci_upper),
+        "full_tau2": _cell(r.full_tau2),
+        "full_i2": _cell(r.full_i2),
         "subset_pooled_estimate": _cell(r.subset_pooled_estimate),
         "subset_se": _cell(r.subset_se),
         "subset_ci_lower": _cell(r.subset_ci_lower),
         "subset_ci_upper": _cell(r.subset_ci_upper),
+        "subset_tau2": _cell(r.subset_tau2),
+        "subset_i2": _cell(r.subset_i2),
         "reproduction_gap": _cell(r.reproduction_gap),
         "precision_gap_ratio": _cell(r.precision_gap_ratio),
         "sign_flip": _cell(r.sign_flip),
+        "heterogeneity_gap": _cell(r.heterogeneity_gap),
     }
 
 
