@@ -25,7 +25,7 @@ parse time. Last author = authors[-1] when len(authors) >= 1.
 
 from __future__ import annotations
 
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET  # noqa: N817 — security: parse untrusted XML safely
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
