@@ -1,0 +1,16 @@
+# tiba.yaml — Tiba federation manifest for the Equity Scoreboard layer.
+# Schema: https://github.com/mahmood726-cyber/tiba/blob/main/schema/tiba.yaml.schema.json
+schema_version: 1
+layer: equity
+status: operational
+owning_repo: mahmood726-cyber/arac
+pages_url: https://mahmood726-cyber.github.io/arac/
+headline_metric:
+  label: "Pairwise70 reproduction-floor non-reproducibility rate validated by ARAC engine (14.30% overall; binary 12.89%, continuous 25.03%, GIV 26.96%)"
+  value: "14.30%"
+  ci_or_qualifier: "ARAC engine reproduces repro-floor-atlas v0.1.0 headline within ±0.5 pp; k=7,545 atlas rows; production RGS atlas extraction deferred"
+  source: "arac v0.9.0 (2026-04-28)"
+contact:
+  steward: mahmood726-cyber
+  cohort: makerere
+last_verified: "2026-05-05"
