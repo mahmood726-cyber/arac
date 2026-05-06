@@ -1,0 +1,405 @@
+{
+  "spec_version": "v0.1.1",
+  "spec_commit": "4b5b1d0",
+  "amendment": "prereg-v0.1.1.2-amend-2",
+  "sample_list_sha256": "1f183278cf25c4a33b441a658528c8ed2794c002a91d53a0bc72bfac554ff400",
+  "model": "claude-opus-4-7",
+  "method": "subagent dispatch (Amendment 2 — substitutes Anthropic API call)",
+  "started_at": "2026-05-06T13:17:16Z",
+  "completed_at": "2026-05-06T13:17:16Z",
+  "n_trials": 30,
+  "n_api_calls": 0,
+  "n_cache_hits": 0,
+  "results": [
+    {
+      "trial_id": "CD006404_pub5_data__A8::t7",
+      "pmid": "30587844",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Japan"
+      ],
+      "evidence_source": "A 64-year-old Japanese female visited our clinic due to thirst and polydipsia",
+      "reasoning": "Single-patient case report of a Japanese female; no African enrolment stated in abstract."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t17",
+      "pmid": "22475593",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 18.7,
+      "non_african_pct": 81.3,
+      "countries_mentioned": [
+        "Cambodia"
+      ],
+      "evidence_source": "1271 patients between 3 and 60 years of age from Asia (81.3%) or Africa (18.7%) with microscopically confirmed, uncomplicated P. falciparum malaria",
+      "reasoning": "Abstract gives explicit Asia 81.3% / Africa 18.7% split; African minority."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t58",
+      "pmid": "23113947",
+      "stratum": "enriched",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Multi-centre pediatric trial with no country names or counts in abstract; affiliations excluded per rule 1."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A8::t21",
+      "pmid": "30587844",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Japan"
+      ],
+      "evidence_source": "A 64-year-old Japanese female visited our clinic due to thirst and polydipsia",
+      "reasoning": "Single-patient case report of a Japanese female; no African enrolment stated in abstract."
+    },
+    {
+      "trial_id": "CD001059_pub6_data__A1::t2",
+      "pmid": "22717143",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "United States"
+      ],
+      "evidence_source": "This 10-year retrospective study assessed the epidemiology and outcomes of patients with Fusobacterium bacteraemia (FB) at a tertiary-care hospital in the USA",
+      "reasoning": "Single tertiary-care hospital in the USA; no African enrolment."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A9::t1",
+      "pmid": "30054641",
+      "stratum": "enriched",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Opinion article on work-life balance with no enrolled participants and no country named in the abstract body; affiliations excluded per rule 1."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A6::t14",
+      "pmid": "30587844",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Japan"
+      ],
+      "evidence_source": "A 64-year-old Japanese female visited our clinic due to thirst and polydipsia",
+      "reasoning": "Single-patient case report of a Japanese female; no African enrolment stated in abstract."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t65",
+      "pmid": "23113947",
+      "stratum": "enriched",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Multi-centre pediatric trial with no country names or counts in abstract; affiliations excluded per rule 1."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A4::t26",
+      "pmid": "30587844",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Japan"
+      ],
+      "evidence_source": "A 64-year-old Japanese female visited our clinic due to thirst and polydipsia",
+      "reasoning": "Single-patient case report of a Japanese female; no African enrolment stated in abstract."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t120",
+      "pmid": "9790433",
+      "stratum": "enriched",
+      "tier_p": "african_majority",
+      "confidence": "high",
+      "african_pct": 100.0,
+      "non_african_pct": 0.0,
+      "countries_mentioned": [
+        "Cameroon"
+      ],
+      "evidence_source": "the frequency of the Asn-to-Tyr mutation associated with chloroquine resistance was established among 129 clinical isolates obtained from indigenous patients in Yaoundé, Cameroon",
+      "reasoning": "All 129 clinical isolates from indigenous patients in Yaoundé, Cameroon (African Union member state)."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t6",
+      "pmid": "30587844",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Japan"
+      ],
+      "evidence_source": "A 64-year-old Japanese female visited our clinic due to thirst and polydipsia",
+      "reasoning": "Single-patient case report of a Japanese female; no African enrolment stated in abstract."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A4::t10",
+      "pmid": "30587844",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Japan"
+      ],
+      "evidence_source": "A 64-year-old Japanese female visited our clinic due to thirst and polydipsia",
+      "reasoning": "Single-patient case report of a Japanese female; no African enrolment stated in abstract."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t28",
+      "pmid": "22475593",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 18.7,
+      "non_african_pct": 81.3,
+      "countries_mentioned": [
+        "Cambodia"
+      ],
+      "evidence_source": "1271 patients between 3 and 60 years of age from Asia (81.3%) or Africa (18.7%) with microscopically confirmed, uncomplicated P. falciparum malaria",
+      "reasoning": "Abstract gives explicit Asia 81.3% / Africa 18.7% split; African minority."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A8::t19",
+      "pmid": "30587844",
+      "stratum": "enriched",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Japan"
+      ],
+      "evidence_source": "A 64-year-old Japanese female visited our clinic due to thirst and polydipsia",
+      "reasoning": "Single-patient case report of a Japanese female; no African enrolment stated in abstract."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A4::t6",
+      "pmid": "21062666",
+      "stratum": "enriched",
+      "tier_p": "african_majority",
+      "confidence": "high",
+      "african_pct": 100.0,
+      "non_african_pct": 0.0,
+      "countries_mentioned": [],
+      "evidence_source": "This open-label, randomised trial was undertaken in 11 centres in nine African countries. Children (<15 years) with severe falciparum malaria were randomly assigned to parenteral artesunate or parenteral quinine.",
+      "reasoning": "5425 African children enrolled across 11 centres in nine African countries; entirely African."
+    },
+    {
+      "trial_id": "CD002112_pub2_data__A2::t73",
+      "pmid": "29057765",
+      "stratum": "random",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "China"
+      ],
+      "evidence_source": "the LAMP assays were applied on samples containing 3 to 35 taeniid eggs obtained from 61 field-collected canine feces in Qinghai",
+      "reasoning": "Canine fecal samples from Qinghai (Tibetan area, China); no African enrolment."
+    },
+    {
+      "trial_id": "CD003594_pub7_data__A1::t39",
+      "pmid": "26646568",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Comparative genomics of Diptera genomes; no human or animal participants with geography stated."
+    },
+    {
+      "trial_id": "CD012712_pub2_data__A2::t1",
+      "pmid": "20945307",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Animal (rat) study; abstract body does not state country of laboratory or animal origin."
+    },
+    {
+      "trial_id": "CD009022_pub4_data__A7::t2",
+      "pmid": "24489502",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Computer-science / scheduling algorithm paper with no human participants and no country mention in abstract body."
+    },
+    {
+      "trial_id": "CD004661_pub4_data__A19::t3",
+      "pmid": "14710106",
+      "stratum": "random",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Australia"
+      ],
+      "evidence_source": "The purpose of this study was to determine the effect of maternal factors associated with impaired placental function on stillbirth and neonatal death rates in South Australia.",
+      "reasoning": "South Australia population database covering 1991-2000; entirely Australian."
+    },
+    {
+      "trial_id": "CD012079_pub2_data__A12::t15",
+      "pmid": "21974867",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Baseline cohort of 138 CWP patients with no country specified in abstract body; affiliations excluded per rule 1."
+    },
+    {
+      "trial_id": "CD009885_pub4_data__A6::t74",
+      "pmid": "28985563",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Human NSCLC patients infused with 13C-lactate plus mouse experiments; no participant country stated in abstract body."
+    },
+    {
+      "trial_id": "CD004667_pub6_data__A11::t8",
+      "pmid": "23362516",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Systematic review/meta-analysis of 23 trials; abstract reports only that English-language trials were included, with no participant-country breakdown."
+    },
+    {
+      "trial_id": "CD016064_data__A4::t32",
+      "pmid": "38087205",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Qualitative analysis of 30 carer participants from the CELPI trial; abstract body does not state participant country (the ACTRN registry prefix is metadata, not a participant-geography statement)."
+    },
+    {
+      "trial_id": "CD007896_pub4_data__A3::t217",
+      "pmid": "19033705",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "191 patients at a single surgeon institution over 10 years with no country named in the abstract body."
+    },
+    {
+      "trial_id": "CD006913_pub3_data__A4::t16",
+      "pmid": "11999622",
+      "stratum": "random",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Canada"
+      ],
+      "evidence_source": "The Hospital for Sick Children, Toronto, Longitudinal ERG study of children on vigabatrin.",
+      "reasoning": "33 children studied at the Hospital for Sick Children, Toronto (Canada); no African enrolment."
+    },
+    {
+      "trial_id": "CD011330_pub2_data__A5::t5",
+      "pmid": "1303082",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Stool samples from 305 diarrhoeal children and matched controls with no participant country named in the abstract body; journal name and affiliations are excluded per rule 1."
+    },
+    {
+      "trial_id": "CD015083_pub2_data__A3::t3",
+      "pmid": "35922272",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Programme description for nurse-led chronic-pain care with no participant country specified in abstract body."
+    },
+    {
+      "trial_id": "CD006268_pub3_data__A3::t17",
+      "pmid": "27982355",
+      "stratum": "random",
+      "tier_p": "not_african_majority",
+      "confidence": "high",
+      "african_pct": 0.0,
+      "non_african_pct": 100.0,
+      "countries_mentioned": [
+        "Brazil"
+      ],
+      "evidence_source": "Zika virus (ZKV) infection is a huge public health problem in Brazil because of the increased incidence of microcephaly in neonates from infected mothers.",
+      "reasoning": "Patient/maternal serum samples from Brazil; Brazil is not an African Union member state."
+    },
+    {
+      "trial_id": "CD006913_pub3_data__A8::t11",
+      "pmid": "23279513",
+      "stratum": "random",
+      "tier_p": "insufficient_data",
+      "confidence": "insufficient",
+      "african_pct": null,
+      "non_african_pct": null,
+      "countries_mentioned": [],
+      "evidence_source": "<no geography stated in abstract>",
+      "reasoning": "Animal (domestic cat) testis study with no country named in the abstract body."
+    }
+  ]
+}

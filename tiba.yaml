@@ -6,11 +6,11 @@ status: operational
 owning_repo: mahmood726-cyber/arac
 pages_url: https://mahmood726-cyber.github.io/arac/
 headline_metric:
-  label: "Pairwise70 reproduction-floor non-reproducibility rate validated by ARAC engine (14.30% overall; binary 12.89%, continuous 25.03%, GIV 26.96%)"
-  value: "14.30%"
-  ci_or_qualifier: "ARAC engine reproduces repro-floor-atlas v0.1.0 headline within ±0.5 pp; k=7,545 atlas rows; production RGS atlas extraction deferred"
-  source: "arac v0.9.0 (2026-04-28)"
+  label: "Tier-P inter-classifier consistency (Cohen's κ): claude-opus-4-7 production classifier vs claude-sonnet-4-6 blinded judge, n=30 Pairwise70 trials"
+  value: "1.000"
+  ci_or_qualifier: "κ=1.000, n_evaluable=9; 21/30 Insufficient (R9 PMID errors + geography-silent abstracts); sens-proxy 100% (CI 34.2-100%, n=2); LLM-vs-LLM not human gold standard; v0.2 human IRR pending; OTS amend-2"
+  source: "arac v0.1.1 (2026-05-06)"
 contact:
   steward: mahmood726-cyber
   cohort: makerere
-last_verified: "2026-05-05"
+last_verified: "2026-05-06"

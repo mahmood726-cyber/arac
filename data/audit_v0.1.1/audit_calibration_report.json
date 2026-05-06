@@ -1,0 +1,31 @@
+{
+  "spec_version": "v0.1.1",
+  "spec_commit": "ebc8c13",
+  "amendment": "prereg-v0.1.1.1-amend-1 (commit 0d3f69c)",
+  "computed_at": "2026-05-06T13:18:37.808940+00:00",
+  "n_trials": 30,
+  "confusion_matrix": {
+    "TP": 2,
+    "FN": 0,
+    "FP": 0,
+    "TN": 7
+  },
+  "n_insufficient_excluded": 21,
+  "n_insufficient_llm_only": 6,
+  "n_insufficient_auditor_only": 7,
+  "n_insufficient_both": 8,
+  "sensitivity": {
+    "point": 1.0,
+    "ci_lower": 0.34237195288961925,
+    "ci_upper": 1.0
+  },
+  "specificity": {
+    "point": 1.0,
+    "ci_lower": 0.6456611570247934,
+    "ci_upper": 1.0
+  },
+  "ppv": 1.0,
+  "kappa": 1.0,
+  "headline_for_tiba_yaml": "100.0%",
+  "headline_qualifier_for_tiba_yaml": "Wilson 95% CI [34.2%–100.0%]; TP=2, FN=0, FP=0, TN=7; 2 auditor-positive trials; 15 enriched + 15 random stratum; auditor: mahmood726-cyber (v0.1.1; Makerere IRR planned for v0.2); pre-reg OTS stamped"
+}
