@@ -52,6 +52,8 @@ A human auditor independently classifies n=30 Pairwise70 trials by reading their
 
 **Session structure.** 30 trials presented in shuffled order (shuffle seed = 99, independent of sampling seed 42). `localStorage` pause/resume. Target: 3 sessions × 10 trials.
 
+**Amendment 2 (2026-05-06):** The auditor for v0.1.1 is `claude-sonnet-4-6` dispatched as a subagent in fresh context, given the same blinded form (no LLM classifier output visible). Sonnet receives the abstract + structured form schema + all 30 trials in one batched call, returning a JSON array of 30 verdicts in the auditor-results format. The session-structure / shuffle / localStorage / pause-resume mechanics in the original form (§3 above) are retained for the v0.2 human IRR audit; for v0.1.1 they do not apply (the LLM judge processes all 30 in one call).
+
 ---
 
 ## 4. LLM Comparator
@@ -62,26 +64,23 @@ A human auditor independently classifies n=30 Pairwise70 trials by reading their
 
 **Cache.** `outputs/cache/resolve/tier_p_llm/` populates on first run; subsequent re-runs are free.
 
+**Amendment 2 (2026-05-06):** For v0.1.1 ship, the entry point is replaced by an `claude-opus-4-7` subagent dispatch in fresh context, given the production Tier-P system prompt + 30 abstracts + structured output schema, returning classifications in the same format the script would emit. The script `scripts/tier_p_audit_batch.py` is retained for the v0.2 per-call path (API-key-gated). Batched-vs-per-call deviation: see §12 R7.
+
 ---
 
 ## 5. Comparison Statistics
 
-**Primary: sensitivity** = TP / (TP + FN), where TP = LLM `african_majority` AND auditor `African_majority`; FN = LLM `not_african_majority` AND auditor `African_majority`. Trials marked `Insufficient` by either party are excluded.
+**Primary (Amendment 2): Cohen's κ** between opus-classifier and sonnet-judge on the 2×2 confusion matrix (excluding Insufficient). κ = (P_observed − P_chance) / (1 − P_chance). Asymptotic CI via Fleiss: σ²(κ) = (P_observed(1−P_observed)) / (n·(1−P_chance)²); 95% CI = κ ± 1.96·σ. For n<50 (n=30 here), additionally report bootstrap CI: resample n=30 trials with replacement B=10000 times, compute κ each time, take the 2.5th and 97.5th percentiles.
+
+**Secondary (proxy diagnostic): sensitivity** = TP / (TP + FN), where TP = opus `african_majority` AND sonnet-judge `African_majority`; FN = opus `not_african_majority` AND sonnet-judge `African_majority`. Trials marked `Insufficient` by either party are excluded. **Caveat:** sonnet-judge is NOT a human gold standard; this sensitivity number is a within-LLM-family agreement metric, not the same as PACTR's blinded human auditor sensitivity. v0.2 Makerere human IRR replaces sonnet-judge.
+
+Wilson 95% CI for sensitivity (proxy) and specificity formulae unchanged from original §5.
 
 **Secondary:**
 - Specificity = TN / (TN + FP)
 - Positive predictive value = TP / (TP + FP)
-- Cohen's κ = (P_observed − P_chance) / (1 − P_chance) on the 2×2
 
-**CI method.** Wilson score 95% CI:
-```
-n = TP + FN  (for sensitivity)
-p = TP / n
-CI = (p + z²/2n ± z·sqrt(p(1-p)/n + z²/4n²)) / (1 + z²/n)
-z = 1.96
-```
-
-**Headline for `tiba.yaml`.** Sensitivity (point estimate, Wilson 95% CI), e.g. `"83.3% (95% CI: 58.6–96.4%); n=30, 12/30 auditor-positive"`. If sensitivity cannot be computed (zero auditor positives despite enriched stratum), protocol fails — see §12 Risk 1.
+**Headline for `tiba.yaml`.** Cohen's κ point estimate (asymptotic 95% CI), e.g. `"82.4%"` for value; full CI + n + sensitivity-proxy in `ci_or_qualifier`. If κ cannot be computed (all agreements, zero variance in one class), protocol fails — see §12 Risk 1.
 
 ---
 
@@ -110,11 +109,11 @@ New files committed at v0.1.1:
 
 ```yaml
 headline_metric:
-  label: "Tier-P blinded-audit sensitivity: LLM african-majority classifier vs human auditor, n=30 Pairwise70 trials"
+  label: "Tier-P inter-classifier consistency (κ): claude-opus-4-7 production classifier vs claude-sonnet-4-6 blinded judge, n=30 Pairwise70 trials"
   value: "<XX.X%>"
-  ci_or_qualifier: "Wilson 95% CI [<A.A%>–<B.B%>]; TP=<M>, FN=<N>, FP=<P>, TN=<Q>; <M+N> auditor-positive trials; 15 enriched + 15 random stratum; auditor: mahmood726-cyber (v0.1.1; Makerere IRR planned for v0.2); pre-reg OTS <hash prefix>"
-  source: "arac v0.1.1 (2026-05-XX)"
-last_verified: "2026-05-XX"
+  ci_or_qualifier: "Cohen's κ <K.KK> [asymptotic 95% CI: <A.AA>–<B.BB>]; sensitivity-proxy <SS.S%> (LLM judge, NOT human gold standard); 15 enriched + 15 random stratum (Amendment 1: word-boundary regex); pre-reg OTS prereg-v0.1.1.2-amend-2; v0.2 Makerere human IRR audit pending"
+  source: "arac v0.1.1 (2026-05-06)"
+last_verified: "2026-05-06"
 ```
 
 The `14.30%` engine-validation number moves to `E156-PROTOCOL.md` "Module versions shipped" as a reproducibility anchor; it is not discarded.
@@ -144,18 +143,19 @@ The LLM-batch script hard-fails if `sample_list.json.ots` does not exist (enforc
 
 ## 9. Locked Decisions (v0.1.1)
 
-1. **Auditor:** mahmood726-cyber (steward). Bias risk acknowledged; mitigated by required `evidence_quote` field.
-2. **IRR:** v0.2 — Makerere PhD-cohort second blinded auditor on the same 30 trials; Cohen's κ between human raters.
+1. **Auditor (v0.1.1):** `claude-sonnet-4-6` subagent (LLM, blinded form, batched). Architectural-bias caveat acknowledged; v0.2 Makerere PhD-cohort human IRR audit replaces this and ships the human gold-standard sensitivity headline.
+2. **IRR & gold standard:** v0.2 — Makerere PhD-cohort blinded human auditor on the same 30 trials. Cohen's κ between sonnet-judge (v0.1.1) and human (v0.2) measures architectural-bias of LLM judging vs human; sensitivity vs human becomes the canonical headline.
 3. **Threshold:** 50% African-majority (matches production code). Locked.
 
 ---
 
 ## 10. Cost & Time Budget
 
-- **LLM cost:** 30 trials × ~$0.01–$0.04 = **$0.30–$1.20** total. No prompt-caching benefit at this scale.
-- **Auditor time:** 30 trials × 5–10 min = **2.5–5 hours** total. Recommended: 3 sessions × 10 trials over 1–2 weeks.
-- **Infrastructure:** zero new infrastructure. OTS is a free CLI call. UI is a static HTML file.
-- **Total:** under $2 in API cost, one human-day of effort, 2–3 weeks elapsed.
+- **API spend (v0.1.1):** **$0**. Both subagent dispatches use the Claude Code subscription; no separate Anthropic API billing.
+- **Auditor time (v0.1.1):** **0 hours** (sonnet-judge subagent).
+- **API spend (v0.2):** ~$0.30–$1.20 for per-call opus run + Anthropic API key.
+- **Auditor time (v0.2):** 2.5–5 hours human (Makerere PhD-cohort), one human-day spread over 1–2 weeks.
+- **Infrastructure:** zero new infrastructure. OTS stamp via WSL CLI.
 
 ---
 
@@ -164,12 +164,12 @@ The LLM-batch script hard-fails if `sample_list.json.ots` does not exist (enforc
 A v0.1.1 tag is cut when ALL hold:
 1. `data/audit_v0.1.1/sample_list.json` exists with exactly 30 entries (each with confirmed PMID).
 2. `sample_list.json.ots` and `audit_instrument.html.ots` and this spec's `.ots` are committed (verifiable via `ots verify`).
-3. `audit_auditor_results.json` has exactly 30 entries, all with non-null `auditor_verdict`.
+3. `audit_auditor_results.json` has exactly 30 entries, all with non-null `auditor_verdict` (source: sonnet-subagent for v0.1.1).
 4. `audit_llm_outputs.json` has exactly 30 entries, all with non-null `tier_p`.
 5. `audit_calibration_report.json` exists with: `sensitivity`, `specificity`, `ppv`, `kappa`, `ci_lower`, `ci_upper`, `n_auditor_positive`, `n_insufficient_excluded`, `confusion_matrix`.
-6. `tiba.yaml` `value` field equals the sensitivity point estimate from `audit_calibration_report.json` (verified by `tests/test_tiba_headline.py`).
+6. `tiba.yaml` `value` field equals the **Cohen's κ** point estimate from `audit_calibration_report.json` (verified by `tests/test_tiba_headline.py`).
 7. All existing 110 pytest tests pass (no regressions).
-8. `E156-PROTOCOL.md` updated: "Plan 2D (Tier-P) calibration audit complete" row added.
+8. `E156-PROTOCOL.md` updated: "v0.1.1 Tier-P inter-classifier κ calibration complete (LLM judge); v0.2 human IRR pending" row added.
 
 ---
 
@@ -206,3 +206,31 @@ The Tiba meta-repo's index page CI auto-rebuilds on any push that includes a fed
 - This amendment: git tag `prereg-v0.1.1.1-amend-1` at the amendment commit (this commit). New OTS stamps for amended spec + regenerated sample list.
 
 **No data discarded.** The original sample list at the prior tag remains a valid pre-registered artefact for archival; it is not the audit set. The amended sample list (regenerated with the same `seed=42` under the word-boundary regex) becomes the v0.1.1 audit set.
+
+### Amendment 2 — LLM-substituted classifier and judge (2026-05-06, pre-data)
+
+**What changed:** Sections 3, 4, 5, 7, 9, 10, 11, 12.
+
+- **§3 Auditor Instrument.** "Auditor" is now an LLM subagent (`claude-sonnet-4-6`) rather than a human. The instrument fields are unchanged; the structured form is filled by the sonnet subagent in batched mode (all 30 trials in a single fresh-context dispatch). Document recommends the v0.1.2 or v0.2 Makerere PhD-cohort human IRR audit as the eventual human gold-standard headline.
+- **§4 LLM Comparator.** "Production classifier" is dispatched as an `claude-opus-4-7` subagent in fresh context, given the production Tier-P system prompt + 30 abstracts in batched mode, returning structured classifications. This substitutes for `scripts/tier_p_audit_batch.py` (which is retained for the v0.2 path with API key).
+- **§5 Comparison Statistics.** Primary headline metric REFRAMED to **Cohen's κ** between opus-classifier and sonnet-judge on the 2×2 (excluding Insufficient). Asymptotic CI for κ via Fleiss formula: σ²(κ) = (P₀(1-P₀))/(n(1-P_e)²); CI = κ ± 1.96·σ. Sensitivity (proxy) becomes secondary diagnostic with caveat. Specificity, PPV, confusion matrix retained.
+- **§7 Tiba Update.** New headline format. The `value` field becomes the κ point estimate as a percentage (e.g. `"82.4%"`); `ci_or_qualifier` carries the asymptotic CI + n + sensitivity-as-proxy + auditor identity disclaimer.
+- **§9 Locked Decisions (v0.1.1).** Auditor for v0.1.1 changes from `mahmood726-cyber (steward)` to `claude-sonnet-4-6 subagent (blinded; LLM-not-human)`. Threshold (50%) unchanged. v0.2 IRR carve-out becomes the human gold-standard ship.
+- **§10 Cost & Time Budget.** $0 API spend (uses Claude Code subscription for subagent dispatches). 0 human-audit hours for v0.1.1. v0.2 budget unchanged (1 human-day Makerere auditor).
+- **§11 Acceptance Criteria.** Criterion 3 now requires `audit_auditor_results.json` to be the sonnet-subagent output (30 entries, all with non-null `auditor_verdict`). Criterion 6 now requires `tiba.yaml`'s `value` field to equal the κ point estimate (was: sensitivity). Test `tests/test_tiba_headline.py` updated accordingly.
+- **§12 Risks.** Three new entries:
+  - **R6 — LLM-judge architectural bias.** Sonnet 4.x and opus 4.x share training lineage; their disagreements may underestimate genuine human-auditor disagreement. Mitigation: v0.2 Makerere human IRR audit replaces sonnet-judge, providing the real human gold standard.
+  - **R7 — Batched-vs-per-call order effects.** Production Tier-P calls the LLM per trial; the v0.1.1 calibration batches 30 trials in one subagent dispatch to amortize overhead. Order effects are possible. Mitigation: v0.2 runs per-call when API key configured.
+  - **R8 — Small-sample κ CI.** n=30 yields wide asymptotic CIs on κ. Mitigation: report the full confusion matrix + bootstrap CI as supplementary; v0.2 with human auditor + larger sample tightens.
+
+**Why:** No `ARAC_ANTHROPIC_API_KEY` was configured in the host environment at the time of v0.1.1 ship; the LLM-batch script's pre-registration gate hard-failed at the API-key check (no spend incurred). Mahmood (steward) is also not available for the 30-trial human audit on the v0.1.1 timeline. Rather than indefinitely defer ARAC's federation-card update, the protocol substitutes LLM subagents for both roles. The substitution is honest: Tiba's index page will show a κ headline, not a sensitivity headline, with explicit "LLM-vs-LLM" framing.
+
+**When:** 2026-05-06, immediately after Phase 5's first attempt failed at the API-key check. **No LLM data was generated, no auditor saw any trial.** No data shopping risk.
+
+**Authority:** Mahmood Ahmad (steward), pursuant to spec §9 Locked Decisions.
+
+**Anchors:**
+- Pre-amendment-2 state: git tag `prereg-v0.1.1.1-amend-1` at commit `0d3f69c`. Original sample list, original auditor identity, original headline metric all preserved at that tag.
+- This amendment: git tag `prereg-v0.1.1.2-amend-2` at the amendment commit. New OTS stamp for amended spec. Sample list (commit `4916242` content) is unchanged — same 30 trials, same shuffle seed, same enrichment regex.
+
+**No data discarded.** v0.1.1 ships with sonnet-judge; v0.2 re-runs the same protocol with human auditor + per-call API; both calibration reports become canonical artifacts.
