@@ -3,8 +3,9 @@
 import json
 import hashlib
 import sys
+from pathlib import Path
 
-BASE = "C:/Projects/arac/data/audit_v0.1.1"
+BASE = str(Path(__file__).resolve().parent.parent / "data" / "audit_v0.1.1")
 
 with open(f"{BASE}/sample_list.json", "rb") as f:
     sl_bytes = f.read()

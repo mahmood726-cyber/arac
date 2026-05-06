@@ -28,7 +28,7 @@ from pathlib import Path
 
 
 # ---------------------------------------------------------------------------
-# Path setup — run from repo root (C:/Projects/arac).
+# Path setup — run from repo root.
 # ---------------------------------------------------------------------------
 _REPO_ROOT = Path(__file__).parent.parent
 _AUDIT_DIR = _REPO_ROOT / "data" / "audit_v0.1.1"

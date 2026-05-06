@@ -7,7 +7,7 @@ Spec commit: ebc8c13
 OTS: data/audit_v0.1.1/sample_list.json.ots
 
 Usage:
-    cd C:/Projects/arac
+    cd <arac repo root>
     python scripts/sample_audit_trials_v0_1_1.py
 
 Output: data/audit_v0.1.1/sample_list.json
@@ -84,28 +84,28 @@ _OUT_JSON = _OUT_DIR / "sample_list.json"
 # ---------------------------------------------------------------------------
 
 def _data_dir() -> Path:
-    """Discover Pairwise70 data directory (mirrors inspect_rda._data_dir)."""
-    import os
-    env_override = os.environ.get("PAIRWISE70_DIR")
-    if env_override:
+    """Discover Pairwise70 data directory.
+
+    Delegates to inspect_rda._data_dir() which handles env var + candidate fallback.
+    """
+    try:
+        from inspect_rda import _data_dir as inspect_data_dir
+        return inspect_data_dir()
+    except ImportError:
+        # Fallback if inspect_rda is not importable; env var becomes mandatory
+        import os
+        env_override = os.environ.get("PAIRWISE70_DIR")
+        if not env_override:
+            raise SystemExit(
+                "PAIRWISE70_DIR env var is required (inspect_rda not importable). "
+                "Set it to point to your Pairwise70 data directory."
+            )
         p = Path(env_override)
         if not p.is_dir():
-            raise RuntimeError(
+            raise SystemExit(
                 f"PAIRWISE70_DIR={env_override!r} is set but is not a directory."
             )
         return p
-    candidates = [
-        "C:/Projects/Pairwise70/data",
-        "D:/Projects/Pairwise70/data",
-    ]
-    for c in candidates:
-        p = Path(c)
-        if p.is_dir():
-            return p
-    raise RuntimeError(
-        f"Pairwise70 data directory not found. Set PAIRWISE70_DIR env var "
-        f"or place data at one of: {candidates}"
-    )
 
 
 def _sha256_file(path: Path) -> str:
