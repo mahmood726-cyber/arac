@@ -1,0 +1,347 @@
+{
+  "spec_version": "v0.1.1",
+  "spec_commit": "ebc8c13",
+  "spec_path": "docs/superpowers/specs/2026-05-06-rgs-blinded-audit.md",
+  "generated_at": "2026-05-06T10:53:45Z",
+  "sampling_seed": 42,
+  "n_total": 30,
+  "n_enriched": 15,
+  "n_random": 15,
+  "pairwise70_dir": "C:\\Projects\\Pairwise70\\data",
+  "pairwise70_rda_sha256": {
+    "CD001059_pub6_data.rda": "4121e37f68cc583dfadbc0bdd79b7382a1ce62be8c0d18e3565364aefb80d85b",
+    "CD001431_pub6_data.rda": "c00c2d102c080fce4bbb6c65bd5ce9e57220ae2cc89d61b3e888bc886e6cf9cf",
+    "CD001837_pub4_data.rda": "ce71722fbcd6f69d3ae9579541fc1e792a502085b0f6d4117dcf67c3aee91a25",
+    "CD001920_pub4_data.rda": "95d98a83900e87401216fe36a67586631d23fc0d428471ddb3007cafdf54db59",
+    "CD002112_pub2_data.rda": "ab3705ed7bc6ff4b943616d253302cef51102d0eac162cc67516f60f35680e17",
+    "CD004736_pub6_data.rda": "7f2a46317f2273b7d95fb483947ec86bfd1e75fea35d8b70d15fc19eec163e59",
+    "CD006404_pub5_data.rda": "2e9ce83e2e4706c827e8de957cfb9c1fbdded07352505ab12e2aab814d44e48e",
+    "CD007674_pub3_data.rda": "55269474deec01e24179f48b1071f13fadb2cf8bf19d87deadc89744a27c1f80",
+    "CD007896_pub4_data.rda": "ab6d5b3c2f826ce00559a20d47f8ba1f62b094af69e0a9aade11837ce1d249eb",
+    "CD008112_pub3_data.rda": "df3065e00efc4fb21072de8be488ffe22b8fde4752bdee711fcdd447a220c33e",
+    "CD008349_pub5_data.rda": "e2902976da5cdafb1019c98a4184b0d40a709f3c74c85c6b50ee57358c10da7c",
+    "CD008552_pub8_data.rda": "b2373d36b8444e76c12f5719c5f1eecb9761468a0720123a76ea162b60a02ef8",
+    "CD009885_pub4_data.rda": "d45bc274fab8a7880532de3a3ab88260aa47ad9bcb69195809ee3afd33126fd7",
+    "CD010216_pub9_data.rda": "157aced02cec27cf620deb56c10b3d57cc9866d0ca4e120ae0fac96d97fc9ff6",
+    "CD013429_pub2_data.rda": "dbcfe486a88972ad97d3adc940c1bdc88ce54518567f6a6a5f3d746477d6f7ff",
+    "CD013616_pub2_data.rda": "13e58e9ecf3e114a7bf03cde9100c54a8723a297afa963fbbe5348fef6f572a1",
+    "CD015328_pub2_data.rda": "8b401b65617a0af1287ba04657cc5e6d5289e123809ac790b4a10facbf04fd39",
+    "CD015673_pub2_data.rda": "d8b7b3d2e08e010a38dca61ba8fbfee1c010278cc530258e62ad213ec7336141"
+  },
+  "trials": [
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A5::t10",
+      "ma_id": "CD008112_pub3_data__A5",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Brønfort 1996",
+      "pmid": "8976475",
+      "abstract_first_120_chars": "OBJECTIVES: To study the relative efficacy of three different treatment for chronic low back pain (CLBP). Two preplanned",
+      "draw_order": 1
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A5::t294",
+      "ma_id": "CD008112_pub3_data__A5",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Bronfort 2011",
+      "pmid": "21622028",
+      "abstract_first_120_chars": "BACKGROUND CONTEXT: Several conservative therapies have been shown to be beneficial in the treatment of chronic low back",
+      "draw_order": 2
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A2::t160",
+      "ma_id": "CD008112_pub3_data__A2",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Schulz 2019",
+      "pmid": "32038994",
+      "abstract_first_120_chars": "Neuropilin-2 (NRP2) is a prognostic indicator for reduced survival in bladder cancer (BCa) patients. Together with its m",
+      "draw_order": 3
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD006404_pub5_data__A2::t2",
+      "ma_id": "CD006404_pub5_data__A2",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "study_string": "Sagara 2018 (Bobo-Doiulasso, Burkina Faso)",
+      "pmid": "30587844",
+      "abstract_first_120_chars": "BACKGROUND Personalized peptide vaccine therapy is regarded as a well-tolerated, safe and effective immunotherapy for pa",
+      "draw_order": 4
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD002112_pub2_data__A2::t70",
+      "ma_id": "CD002112_pub2_data__A2",
+      "rda_filename": "CD002112_pub2_data.rda",
+      "study_string": "Burke 1995",
+      "pmid": "8700055",
+      "abstract_first_120_chars": "Generic equivalent enteral formulas are now commercially available. The purpose of this article is threefold: (1) to def",
+      "draw_order": 5
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD006404_pub5_data__A2::t12",
+      "ma_id": "CD006404_pub5_data__A2",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "study_string": "Sagara 2018 (Sotuba, Mali)",
+      "pmid": "30587844",
+      "abstract_first_120_chars": "BACKGROUND Personalized peptide vaccine therapy is regarded as a well-tolerated, safe and effective immunotherapy for pa",
+      "draw_order": 6
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A5::t125",
+      "ma_id": "CD008112_pub3_data__A5",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Hemmila 2002",
+      "pmid": "12097185",
+      "abstract_first_120_chars": "In addition to kinases and G protein-coupled receptors, proteases are one of the main targets in modern drug discovery. ",
+      "draw_order": 7
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A5::t15",
+      "ma_id": "CD008112_pub3_data__A5",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Hemmila 2002",
+      "pmid": "12097185",
+      "abstract_first_120_chars": "In addition to kinases and G protein-coupled receptors, proteases are one of the main targets in modern drug discovery. ",
+      "draw_order": 8
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A2::t86",
+      "ma_id": "CD008112_pub3_data__A2",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Paatelma 2008",
+      "pmid": "19242624",
+      "abstract_first_120_chars": "OBJECTIVE: To examine the effects of 2 manual therapy methods compared with one counselling session with a physiotherapi",
+      "draw_order": 9
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008349_pub5_data__A7::t54",
+      "ma_id": "CD008349_pub5_data__A7",
+      "rda_filename": "CD008349_pub5_data.rda",
+      "study_string": "Hung 2019",
+      "pmid": "30461524",
+      "abstract_first_120_chars": "BACKGROUND: Equipping undergraduate nursing students with sufficient competence in evidence-based practice (EBP) is esse",
+      "draw_order": 10
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A1::t178",
+      "ma_id": "CD008112_pub3_data__A1",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Hondras 2009",
+      "pmid": "19539115",
+      "abstract_first_120_chars": "OBJECTIVE: Chiropractic care is used by many older patients for low back pain (LBP), but there are no published results ",
+      "draw_order": 11
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A2::t288",
+      "ma_id": "CD008112_pub3_data__A2",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Nejati 2019",
+      "pmid": "32368551",
+      "abstract_first_120_chars": "BACKGROUND: Malaria is the main vector-borne disease worldwide. There are several reports of insecticide resistant in ma",
+      "draw_order": 12
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD001059_pub6_data__A1::t3",
+      "ma_id": "CD001059_pub6_data__A1",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "study_string": "Levine 1997",
+      "pmid": "9400355",
+      "abstract_first_120_chars": "OBJECTIVE: To develop an approach for reducing time between emergency department (ED) admission and treatment in patient",
+      "draw_order": 13
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008349_pub5_data__A7::t20",
+      "ma_id": "CD008349_pub5_data__A7",
+      "rda_filename": "CD008349_pub5_data.rda",
+      "study_string": "Lee 2016a",
+      "pmid": "28239628",
+      "abstract_first_120_chars": "Optical coherence tomography (OCT) is a powerful three-dimensional (3D) imaging modality with micrometer-scale axial res",
+      "draw_order": 14
+    },
+    {
+      "stratum": "enriched",
+      "trial_id": "CD008112_pub3_data__A5::t93",
+      "ma_id": "CD008112_pub3_data__A5",
+      "rda_filename": "CD008112_pub3_data.rda",
+      "study_string": "Dougherty 2014a",
+      "pmid": "24769433",
+      "abstract_first_120_chars": "Peroxisome proliferator-activated receptor γ coactivator 1α (PGC-1α) is a transcriptional coactivator known to regulate ",
+      "draw_order": 15
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD008552_pub8_data__A6::t27",
+      "ma_id": "CD008552_pub8_data__A6",
+      "rda_filename": "CD008552_pub8_data.rda",
+      "study_string": "Tovar 2023",
+      "pmid": "39681961",
+      "abstract_first_120_chars": "Despite 30 years as a public health emergency, tuberculosis (TB) remains one of the world's deadliest diseases. Most dea",
+      "draw_order": 16
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD013616_pub2_data__A2::t118",
+      "ma_id": "CD013616_pub2_data__A2",
+      "rda_filename": "CD013616_pub2_data.rda",
+      "study_string": "Sakr 1999",
+      "pmid": "10632347",
+      "abstract_first_120_chars": "Membrane type 1-matrix metalloproteinase (MT1-MMP) is a known activator of latent MMP-2 (pro-MMP-2), and increased MMP-2",
+      "draw_order": 17
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD013429_pub2_data__A3::t13",
+      "ma_id": "CD013429_pub2_data__A3",
+      "rda_filename": "CD013429_pub2_data.rda",
+      "study_string": "Si 2019",
+      "pmid": "31497541",
+      "abstract_first_120_chars": "BACKGROUND: Some studies have investigated the prevalence of osteoporosis in patients with type 2 diabetes mellitus (T2D",
+      "draw_order": 18
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD013616_pub2_data__A3::t145",
+      "ma_id": "CD013616_pub2_data__A3",
+      "rda_filename": "CD013616_pub2_data.rda",
+      "study_string": "de Thurah 2018",
+      "pmid": "30538575",
+      "abstract_first_120_chars": "PURPOSES: To assess whether the positive predictive value (PPV) of first-time rheumatoid arthritis (RA) diagnosis regist",
+      "draw_order": 19
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD007896_pub4_data__A1::t85",
+      "ma_id": "CD007896_pub4_data__A1",
+      "rda_filename": "CD007896_pub4_data.rda",
+      "study_string": "Paterson 1999",
+      "pmid": "10754952",
+      "abstract_first_120_chars": "OBJECTIVE: To estimate more accurately the age specific prevalence of Trichomonas vaginalis, Chlamydia trachomatis, Neis",
+      "draw_order": 20
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD015673_pub2_data__A3::t2",
+      "ma_id": "CD015673_pub2_data__A3",
+      "rda_filename": "CD015673_pub2_data.rda",
+      "study_string": "Anton 2006",
+      "pmid": "17087819",
+      "abstract_first_120_chars": "BACKGROUND: Over the last years, the mean age of subjects with HIV infection and AIDS is increasing. Moreover, some epid",
+      "draw_order": 21
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD015328_pub2_data__A6::t16",
+      "ma_id": "CD015328_pub2_data__A6",
+      "rda_filename": "CD015328_pub2_data.rda",
+      "study_string": "Elder 2014",
+      "pmid": "24112364",
+      "abstract_first_120_chars": "Two community-based density case-control studies were performed to assess risk factors for cholera transmission during i",
+      "draw_order": 22
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD007674_pub3_data__A3::t26",
+      "ma_id": "CD007674_pub3_data__A3",
+      "rda_filename": "CD007674_pub3_data.rda",
+      "study_string": "Stanley 2003a",
+      "pmid": "14641171",
+      "abstract_first_120_chars": "Mouse-human chimeras have become a novel way to model the interactions between microbial pathogens and human cells, tiss",
+      "draw_order": 23
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD001920_pub4_data__A4::t4",
+      "ma_id": "CD001920_pub4_data__A4",
+      "rda_filename": "CD001920_pub4_data.rda",
+      "study_string": "Chen S 2021",
+      "pmid": "34378589",
+      "abstract_first_120_chars": "Sustainable hydrogen fuel supply through electrochemical water splitting requires highly efficient, low-cost and robust ",
+      "draw_order": 24
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD001837_pub4_data__A1::t2",
+      "ma_id": "CD001837_pub4_data__A1",
+      "rda_filename": "CD001837_pub4_data.rda",
+      "study_string": "Bolman 2002",
+      "pmid": "12200104",
+      "abstract_first_120_chars": "BACKGROUND: This study examined the 1-year effects of a minimal-contact smoking cessation intervention for cardiac inpat",
+      "draw_order": 25
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD010216_pub9_data__A17::t1",
+      "ma_id": "CD010216_pub9_data__A17",
+      "rda_filename": "CD010216_pub9_data.rda",
+      "study_string": "Pulvers 2020",
+      "pmid": "32559341",
+      "abstract_first_120_chars": "AIMS: Synovial sarcoma is defined by recurrent t(X;18)(p11;q11) translocations creating SS18-SSX1, SS18-SSX2 or SS18-SSX",
+      "draw_order": 26
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD009885_pub4_data__A3::t372",
+      "ma_id": "CD009885_pub4_data__A3",
+      "rda_filename": "CD009885_pub4_data.rda",
+      "study_string": "Bhat 2020",
+      "pmid": "32986576",
+      "abstract_first_120_chars": "BACKGROUND: Ligamentum flavum cysts have been rarely described in the literature and are one of the rare causes of neura",
+      "draw_order": 27
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD004736_pub6_data__A32::t21",
+      "ma_id": "CD004736_pub6_data__A32",
+      "rda_filename": "CD004736_pub6_data.rda",
+      "study_string": "Meier 2003",
+      "pmid": "14681038",
+      "abstract_first_120_chars": "It has been suggested that plasma membrane-bound hemichannels perform physiological and pathophysiological functions per",
+      "draw_order": 28
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD001431_pub6_data__A2::t108",
+      "ma_id": "CD001431_pub6_data__A2",
+      "rda_filename": "CD001431_pub6_data.rda",
+      "study_string": "Watts 2015",
+      "pmid": "26714266",
+      "abstract_first_120_chars": "BACKGROUND & OBJECTIVES: Cross-sectional magnetic resonance imaging (MRI) suggests that Parkinson's disease (PD) is asso",
+      "draw_order": 29
+    },
+    {
+      "stratum": "random",
+      "trial_id": "CD001431_pub6_data__A2::t257",
+      "ma_id": "CD001431_pub6_data__A2",
+      "rda_filename": "CD001431_pub6_data.rda",
+      "study_string": "Fagerlin 2011",
+      "pmid": "21698518",
+      "abstract_first_120_chars": "BACKGROUND: Comparative risk perceptions may rival other types of information in terms of effects on health behavior dec",
+      "draw_order": 30
+    }
+  ],
+  "replacements_log": [
+    {
+      "stratum": "enriched",
+      "rejected_trial": "CD008112_pub3_data__A5::t173",
+      "reason": "no_pmid",
+      "replaced_by_draw_order": 14
+    },
+    {
+      "stratum": "random",
+      "rejected_trial": "CD011535_pub7_data__A8::t14",
+      "reason": "no_pmid",
+      "replaced_by_draw_order": 26
+    }
+  ]
+}
