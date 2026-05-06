@@ -24,6 +24,7 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -54,12 +55,21 @@ _N_ENRICHED = 15
 _N_RANDOM = 15
 _N_TOTAL = _N_ENRICHED + _N_RANDOM
 
-# African keywords as listed in spec §2 (case-insensitive substring match)
+# African keywords as listed in spec §2.
+# Amendment 1 (2026-05-06): word-boundary regex prevents matching country
+# substrings inside non-African author surnames (e.g. "Kamali" → "Mali",
+# "Ghanavati" → "Ghana"). See spec §14.
 _AFRICAN_KEYWORDS: list[str] = [
     "Uganda", "Kenya", "South Africa", "Nigeria", "Tanzania", "Ghana",
     "Malawi", "Ethiopia", "Zimbabwe", "Zambia", "Mozambique", "Rwanda",
     "Cameroon", "Senegal", "Mali", "Gambia", "Burkina Faso", "Botswana",
     "Côte d'Ivoire", "Democratic Republic", "Sudan",
+]
+
+# Pre-compiled word-boundary patterns for each keyword (Amendment 1).
+_ENRICHMENT_PATTERNS: list[re.Pattern] = [
+    re.compile(r'\b' + re.escape(kw) + r'\b', re.IGNORECASE)
+    for kw in _AFRICAN_KEYWORDS
 ]
 
 # ---------------------------------------------------------------------------
@@ -105,9 +115,13 @@ def _sha256_file(path: Path) -> str:
 
 
 def _has_african_keyword(study_string: str) -> bool:
-    """Case-insensitive substring check against spec African keyword list."""
-    sl = study_string.lower()
-    return any(kw.lower() in sl for kw in _AFRICAN_KEYWORDS)
+    """Case-insensitive word-boundary match against spec African keyword list.
+
+    Amendment 1 (2026-05-06): uses pre-compiled \\b<keyword>\\b patterns so
+    that author surnames containing country substrings (e.g. "Kamali" → "Mali";
+    "Ghanavati" → "Ghana") are no longer false-positives. See spec §14.
+    """
+    return any(p.search(study_string) for p in _ENRICHMENT_PATTERNS)
 
 
 def _load_all_trials(

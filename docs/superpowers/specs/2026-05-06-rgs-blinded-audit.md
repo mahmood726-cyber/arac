@@ -20,7 +20,7 @@ A human auditor independently classifies n=30 Pairwise70 trials by reading their
 **Sampling frame.** All Pairwise70 MAs at `<drive>:/Projects/Pairwise70/data/` (595 `.rda` files, 6,386 MAs). Unit of analysis: a single trial row (one `Study` string in a Pairwise70 `.rda` dataframe, resolving to a unique PMID).
 
 **Stratification — 15 + 15:**
-- **Stratum 1 (Enriched):** MAs with at least one trial whose study string contains an African country keyword from ARAC's `african_countries.py`: `Uganda`, `Kenya`, `South Africa`, `Nigeria`, `Tanzania`, `Ghana`, `Malawi`, `Ethiopia`, `Zimbabwe`, `Zambia`, `Mozambique`, `Rwanda`, `Cameroon`, `Senegal`, `Mali`, `Gambia`, `Burkina Faso`, `Botswana`, `Côte d'Ivoire`, `Democratic Republic`, `Sudan`.
+- **Stratum 1 (Enriched):** MAs with at least one trial whose study string matches an African country keyword as a **whole word** (case-insensitive `\b<keyword>\b` regex). Keyword list: `Uganda`, `Kenya`, `South Africa`, `Nigeria`, `Tanzania`, `Ghana`, `Malawi`, `Ethiopia`, `Zimbabwe`, `Zambia`, `Mozambique`, `Rwanda`, `Cameroon`, `Senegal`, `Mali`, `Gambia`, `Burkina Faso`, `Botswana`, `Côte d'Ivoire`, `Democratic Republic`, `Sudan`. Multi-word keywords (e.g. "South Africa", "Burkina Faso") match when the entire phrase appears as consecutive words bounded by `\b` at start and end. Word-boundary matching prevents false positives on author surnames containing country substrings (e.g. "Kamali" no longer matches `Mali`; "Ghanavati" no longer matches `Ghana`). See §14 Amendment Log entry 1 for provenance.
 - **Stratum 2 (Random):** Trials drawn uniformly at random from the remaining MAs.
 
 **RNG.** `random.seed(42)` in Python's stdlib `random` module before any sampling. Deterministic given the Pairwise70 snapshot. sha256 of each `.rda` recorded in the pre-registration artefact.
@@ -186,3 +186,23 @@ A v0.1.1 tag is cut when ALL hold:
 ## 13. Tiba Federation Update (post-audit)
 
 The Tiba meta-repo's index page CI auto-rebuilds on any push that includes a federation `tiba.yaml` change. After ARAC v0.1.1 is tagged and pushed, the next Tiba CI run regenerates `site/index.html` and the federation Equity card updates to the calibration headline within 1–2 minutes.
+
+---
+
+## 14. Amendment Log
+
+### Amendment 1 — Word-boundary enrichment regex (2026-05-06, pre-LLM)
+
+**What changed:** Section 2 stratification — enrichment regex switched from case-insensitive substring match to case-insensitive word-boundary match (`\b<keyword>\b`).
+
+**Why:** Phase 2's first sample (commit `4916242`, tagged `prereg-v0.1.1.0`, OTS-stamped) revealed that 13 of 15 enriched-stratum trials were back-pain chiropractic studies whose author surnames contained African country substrings ("Kamali" → matched `Mali`; "Ghanavati" → matched `Ghana`; "Malik" → matched `Mali`). Only the 2 Sagara 2018 trials (Burkina Faso, Mali) were genuine African research. With ~2 expected auditor positives in the sample, the sensitivity CI would be uselessly wide.
+
+**When:** Discovered 2026-05-06 immediately after the Phase 2 implementer flagged it. **No LLM batch was run, no auditor saw any trial.** Therefore no data was shopped — the amendment fixes a known pre-execution defect, not a post-hoc result.
+
+**Authority:** Mahmood Ahmad (steward), pursuant to spec §9 Locked Decisions.
+
+**Anchors:**
+- Original pre-reg: git tag `prereg-v0.1.1.0` at commit `4916242` (substring regex, superseded). Original `sample_list.json.ots` and original spec `.ots` are preserved at that tag in git history.
+- This amendment: git tag `prereg-v0.1.1.1-amend-1` at the amendment commit (this commit). New OTS stamps for amended spec + regenerated sample list.
+
+**No data discarded.** The original sample list at the prior tag remains a valid pre-registered artefact for archival; it is not the audit set. The amended sample list (regenerated with the same `seed=42` under the word-boundary regex) becomes the v0.1.1 audit set.
