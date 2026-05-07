@@ -6,11 +6,11 @@ status: operational
 owning_repo: mahmood726-cyber/arac
 pages_url: https://mahmood726-cyber.github.io/arac/
 headline_metric:
-  label: "Tier-P RGS on v0.1.1 audit subset (n=21 MAs from 30 audited trials): full vs African-majority subset pooled estimates"
-  value: "0%"
-  ci_or_qualifier: "all 21 MAs invisible (k_subset<3); 2/21 have k_subset=1; kappa=1.000 calibration (v0.1.1) carries; v0.2 pilot (n=100) and v0.3 full (n=6386) follow"
-  source: "arac v0.1.3 (2026-05-06)"
+  label: "Tier-P pilot RGS atlas (sonnet, n=100 MAs stratified: 45 enriched census + 55 random): full vs African-majority subset pooled estimates"
+  value: "16/100 visible (k_subset>=3)"
+  ci_or_qualifier: "5/16 sign-flip (31.2%); 11/16 reproduction gap (68.8%); sonnet production swap from opus (v0.1.1 kappa=1.000 on 10-trial calibration); OTS prereg-v0.2.0; v0.3 full atlas (n=6386) deferred"
+  source: "arac v0.2.0 (2026-05-07)"
 contact:
   steward: mahmood726-cyber
   cohort: makerere
-last_verified: "2026-05-06"
+last_verified: "2026-05-07"

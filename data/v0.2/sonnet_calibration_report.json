@@ -1,0 +1,117 @@
+{
+  "spec_version": "v0.2",
+  "generated_at": "2026-05-07T08:54:55Z",
+  "method": "inline-subagent (Claude Code session — no subprocess API call; sonnet applies production system prompt rules to 10 cached abstracts)",
+  "opus_model": "claude-opus-4-7",
+  "sonnet_model": "claude-sonnet-4-6",
+  "n_calibration_trials": 10,
+  "n_evaluated": 10,
+  "n_definitive_pairs": 10,
+  "n_agree": 10,
+  "kappa": 1.0,
+  "kappa_threshold": 0.6,
+  "verdict": "PROCEED",
+  "verdict_reason": "kappa=1.000 >= threshold 0.600 — all 10 evaluable pairs agree",
+  "trial_results": [
+    {
+      "trial_id": "CD001059_pub6_data__A1::t2",
+      "pmid": "22717143",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 0.0,
+      "confidence": "high",
+      "reasoning": "Tertiary-care hospital in USA (Ohio/Pittsburgh). No African enrollment."
+    },
+    {
+      "trial_id": "CD002112_pub2_data__A2::t73",
+      "pmid": "29057765",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 0.0,
+      "confidence": "high",
+      "reasoning": "Tibetan rural area, Japanese university. No African enrollment."
+    },
+    {
+      "trial_id": "CD004661_pub4_data__A19::t3",
+      "pmid": "14710106",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 0.0,
+      "confidence": "high",
+      "reasoning": "South Australia population data, University of Adelaide. South Australia is not in Africa."
+    },
+    {
+      "trial_id": "CD006268_pub3_data__A3::t17",
+      "pmid": "27982355",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 0.0,
+      "confidence": "high",
+      "reasoning": "Universidade de Sao Paulo, Brazil. No African enrollment."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t120",
+      "pmid": "9790433",
+      "opus_tier_p": "african_majority",
+      "sonnet_tier_p": "african_majority",
+      "agree": true,
+      "african_pct_sonnet": 100.0,
+      "confidence": "high",
+      "reasoning": "129 clinical isolates from indigenous patients in Yaounde, Cameroon. 100% African."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t17",
+      "pmid": "22475593",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 18.7,
+      "confidence": "high",
+      "reasoning": "Explicit split: Asia 81.3% / Africa 18.7%. African minority."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t28",
+      "pmid": "22475593",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 18.7,
+      "confidence": "high",
+      "reasoning": "Same paper as t17: Asia 81.3% / Africa 18.7%. African minority."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A10::t6",
+      "pmid": "30587844",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 0.0,
+      "confidence": "high",
+      "reasoning": "Japanese female case report at Shin-Koga Hospital, Kurume, Fukuoka, Japan. No African enrollment."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A4::t10",
+      "pmid": "30587844",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 0.0,
+      "confidence": "high",
+      "reasoning": "Same paper (duplicate PMID): Japanese case report. No African enrollment."
+    },
+    {
+      "trial_id": "CD006404_pub5_data__A4::t26",
+      "pmid": "30587844",
+      "opus_tier_p": "not_african_majority",
+      "sonnet_tier_p": "not_african_majority",
+      "agree": true,
+      "african_pct_sonnet": 0.0,
+      "confidence": "high",
+      "reasoning": "Same paper (duplicate PMID): Japanese case report. No African enrollment."
+    }
+  ]
+}

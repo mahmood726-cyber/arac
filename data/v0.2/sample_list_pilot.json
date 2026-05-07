@@ -1,0 +1,906 @@
+{
+  "spec_version": "v0.2",
+  "spec_path": "docs/superpowers/specs/2026-05-06-v0.2-pilot-atlas.md",
+  "generated_at": "2026-05-07T08:48:09Z",
+  "sampling_seed": 42,
+  "n_enriched": 45,
+  "n_random": 55,
+  "n_total": 100,
+  "enrichment_note": "Enriched stratum is a census of all 45 eligible enriched MAs (k>=3) matching Africa-endemic-disease keywords. Random stratum drew 55 from 5529 non-enriched eligible MAs.",
+  "enrichment_keywords": [
+    "Uganda",
+    "Kenya",
+    "South Africa",
+    "Nigeria",
+    "Tanzania",
+    "Ghana",
+    "Malawi",
+    "Ethiopia",
+    "Zimbabwe",
+    "Zambia",
+    "Mozambique",
+    "Rwanda",
+    "Cameroon",
+    "Senegal",
+    "Mali",
+    "Gambia",
+    "Burkina Faso",
+    "Botswana",
+    "Cote d Ivoire",
+    "Democratic Republic",
+    "Sudan",
+    "malaria",
+    "HIV",
+    "AIDS",
+    "tuberculosis",
+    "bednet",
+    "trypanosomiasis",
+    "onchocerciasis",
+    "leishmaniasis",
+    "schistosomiasis",
+    "helminth",
+    "sleeping sickness",
+    "yellow fever",
+    "cholera"
+  ],
+  "metadata_field_used": "Study strings + Analysis.name (concatenated)",
+  "rda_sha256": {
+    "CD000402_pub5_data.rda": "fe61c7f3e2cd7783c4cd160ae4306b78429d6b195033bd3f248df4c15165b138",
+    "CD001059_pub6_data.rda": "4121e37f68cc583dfadbc0bdd79b7382a1ce62be8c0d18e3565364aefb80d85b",
+    "CD001396_pub4_data.rda": "2f0679516c03fff6ac0576c3e2acfba1cb2f60c6f06561ed971edb9793547a2e",
+    "CD002112_pub2_data.rda": "ab3705ed7bc6ff4b943616d253302cef51102d0eac162cc67516f60f35680e17",
+    "CD003598_pub3_data.rda": "897bf5c92baa67a914ef4193c829ab759a444a94260b04de0aed0a97fe78458d",
+    "CD004376_pub4_data.rda": "b98c5dab617f34026b5541e97aaf7d70194bad2950310e0b34adf984ad290e8c",
+    "CD004508_pub5_data.rda": "13bc604c4e298e194ca18a2eab6292eb0d7a91d546b56dc12e9df614265f8a21",
+    "CD004667_pub6_data.rda": "d7dff1b5f1e5f764eff9f9ffe428993fec25084f8fbbef206c5b905d3152a6b7",
+    "CD004736_pub6_data.rda": "7f2a46317f2273b7d95fb483947ec86bfd1e75fea35d8b70d15fc19eec163e59",
+    "CD006023_pub4_data.rda": "1f5ad61f0c9afc5be8fa607acb429150840f441971565e196ec42f1450ed6bb9",
+    "CD006140_pub3_data.rda": "6905c9fe0413ad5b62b314ec902e89b144cbcfabe0758fd5225aa8187216b9e6",
+    "CD006404_pub5_data.rda": "2e9ce83e2e4706c827e8de957cfb9c1fbdded07352505ab12e2aab814d44e48e",
+    "CD006589_pub5_data.rda": "345dde918319ef594e83dd5bfebf4694d445e05f482accb151946afa2fd6409b",
+    "CD006689_pub3_data.rda": "cd4f9ffc4ec92dead02b025c35dde7e8a276e5096300a3177b9d5d5132724c61",
+    "CD006714_pub3_data.rda": "7816f184bb7db61254670fcca4250142a4e12f815a201eb090d249b7f56a3c5f",
+    "CD006913_pub3_data.rda": "b25041cd0759ed4927cd5d4310e1236f4759a205136f3efa89314f74cef831d7",
+    "CD007079_pub4_data.rda": "e29f380bc36ff4243814ccf6d13714df777e40e85f750826e8b1bc2bd1536fc9",
+    "CD007131_pub5_data.rda": "a1ad7c89e6790e37c035fdbf9d8cebead45bcd2aad64c05b29955dd0d80bb148",
+    "CD007674_pub3_data.rda": "55269474deec01e24179f48b1071f13fadb2cf8bf19d87deadc89744a27c1f80",
+    "CD008112_pub3_data.rda": "df3065e00efc4fb21072de8be488ffe22b8fde4752bdee711fcdd447a220c33e",
+    "CD008176_pub3_data.rda": "af78ea8644bf70a4c67c14cccae12e2652469b7565708f75bc9623144c2cb02c",
+    "CD009730_pub3_data.rda": "f69a07886eeb55d9b6ddfe75cbe967c97f08b5fd404c40c43f35c74c82fd559e",
+    "CD009733_pub4_data.rda": "4745b796109194ca687c42ff06fc339a9331ad47079e8b7a33df7ec16b431a24",
+    "CD011225_pub2_data.rda": "3729d0a342879f6892637823c9511bb554acb94d7fcf58db7efb50a5bff58c51",
+    "CD011793_pub3_data.rda": "489644018767dcd230e5cc022cd62034faa2be9fb2928748d755ef43ae04024b",
+    "CD011866_pub3_data.rda": "e8b8233a422e110d41f74f942df7dd91f8f2ac9d0e1d34888359f9789970f46a",
+    "CD012067_pub3_data.rda": "ce9b36e96ac9a5a88a405c3ef43fe676e513b5b330c63f1dc9966a360650865f",
+    "CD012712_pub2_data.rda": "3ceffb11075e6adbeef3a9dc4c0cc53dae8832398c0cd8838934b904a93c10bc",
+    "CD013284_pub2_data.rda": "71b3e6326e707d8e9cdbee3e80564acd72f7ee404ae96d92d4c2dcaa6bd6d74d",
+    "CD013294_pub2_data.rda": "1f125d00a2ce1d4902b37bb5f739a5330f150ad541c3845ee98397c9a458e694",
+    "CD013303_pub2_data.rda": "6a08d54536e6dfed7ba1f471e23c07d6e6955d748fbe690137cdedf639f5c9cb",
+    "CD013342_pub2_data.rda": "1c7051a5afba516ae12bd99297975ef326eeefe735aec2403ca65bcef11ad992",
+    "CD013344_pub2_data.rda": "47174c435496f212365fb6e0ea54cc2b96063ee515b5d34ad2f621a26ace5a42",
+    "CD013715_pub2_data.rda": "49b3a6bf87682fe6f5d4446af59d4aa67a2d4b4fa864d243fc6d4b7e95ca5e4f",
+    "CD013810_pub2_data.rda": "66ba241eb077b31b2583a37184097f152c69a49a232001c4733b1cdce8e7a702",
+    "CD014040_pub2_data.rda": "5f41213e228d8fcc53073bdf5ede90bf44324ea32e1a6477273caa662b6a3c66",
+    "CD014541_pub2_data.rda": "93c34f0db9775d470cce15535d3970d8f6fafe04229c7083bbbef0778bc11886",
+    "CD014573_data.rda": "0ba9e689902edf914651627d8dc11dfe7b23101286ea93a08402ce669ccc38d2",
+    "CD014585_pub2_data.rda": "2710aab77700b9490ca03407b72cab73f1b1cfab3d22678b350c6e95409ade0c",
+    "CD014666_pub2_data.rda": "b2dca93d5903aff4ef749c2ec42a12e8e1b925c51dd4f8474c91ed96468b3faf",
+    "CD014722_pub2_data.rda": "f439592f96037e317d0c21656d34a6fd0dee17ac88953da0d3846be8dcba419b",
+    "CD014769_pub2_data.rda": "a08f5204ee74f14caf736642214611ee0253e55b29659341cfa53a63fa07d240",
+    "CD014845_pub2_data.rda": "a68a527bdab5af465df07e58d440075b52f95a6c93da702bcce63c14b1f5149d",
+    "CD014852_pub2_data.rda": "6cc185a4c62c46dfabcb09cddd14749947a1dfae126add4658d89e4ce9ead79b",
+    "CD014967_pub2_data.rda": "6e4be332935a49f6060db1c30a8ee6f9b85102ed60d4c684740e17f9826136b6",
+    "CD015003_pub2_data.rda": "273cd2413b7463aead2b8a0be89429394cf8650122c4dcc71304ceadc4a456e7",
+    "CD015014_pub2_data.rda": "8a7121f60772f471173472e12b861a4c7f6842e89d90db65a367f862876ae2d1",
+    "CD015122_pub2_data.rda": "e8e2fe5f6587271d3b8e518ce532b1a3858337b07566a5c392669b7e26787bcf",
+    "CD015215_pub2_data.rda": "3558762b3e03135f5c573c697af795cae3636381e86d309c637ce80632505744",
+    "CD015284_pub2_data.rda": "463f1bad5f797210eef95f723bb977e95a4d1cd95fcc45c58f3a3b76782ae59e",
+    "CD015364_pub2_data.rda": "41c5f72397db05d918df5ea44d7a58c2e0a693aad10b2e64d4b8681d2403884a",
+    "CD015383_pub2_data.rda": "452c7d6bef3b1f2e0be478155bb7da7b8551b8b1d77ce0dddaaf8ed3d0377a5e",
+    "CD015701_pub2_data.rda": "8da84503f44543826597ddad921b999b6f34024413b247ba80e5c1e2d5575eb3",
+    "CD015875_data.rda": "fb717b618adbd93cd367e9ca2beeaf366a43bc5b51d7cb3301925051a7671475",
+    "CD016347_data.rda": "5a3bf32b1997586b787693f587d10fed10ba8dada479745a349ea9eade790ae1"
+  },
+  "ma_list": [
+    {
+      "ma_id": "CD001059_pub6_data__A1",
+      "stratum": "enriched",
+      "k_total": 8,
+      "matched_keyword": "Tanzania",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Pre-eclampsia"
+    },
+    {
+      "ma_id": "CD001059_pub6_data__A2",
+      "stratum": "enriched",
+      "k_total": 5,
+      "matched_keyword": "Tanzania",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Maternal death"
+    },
+    {
+      "ma_id": "CD001059_pub6_data__A21",
+      "stratum": "enriched",
+      "k_total": 8,
+      "matched_keyword": "Tanzania",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Gestational hypertension or pregnancy-induced hypertension"
+    },
+    {
+      "ma_id": "CD001059_pub6_data__A31",
+      "stratum": "enriched",
+      "k_total": 6,
+      "matched_keyword": "Tanzania",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Perinatal loss"
+    },
+    {
+      "ma_id": "CD001059_pub6_data__A32",
+      "stratum": "enriched",
+      "k_total": 8,
+      "matched_keyword": "Tanzania",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Preterm delivery at or before 37 weeks"
+    },
+    {
+      "ma_id": "CD001059_pub6_data__A34",
+      "stratum": "enriched",
+      "k_total": 6,
+      "matched_keyword": "Tanzania",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Stillbirth"
+    },
+    {
+      "ma_id": "CD001059_pub6_data__A36",
+      "stratum": "enriched",
+      "k_total": 3,
+      "matched_keyword": "Tanzania",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Infant loss"
+    },
+    {
+      "ma_id": "CD001059_pub6_data__A45",
+      "stratum": "enriched",
+      "k_total": 4,
+      "matched_keyword": "Tanzania",
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Small for gestational age"
+    },
+    {
+      "ma_id": "CD004736_pub6_data__A27",
+      "stratum": "enriched",
+      "k_total": 9,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD004736_pub6_data.rda",
+      "analysis_name": "Maternal clinical malaria"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A1",
+      "stratum": "enriched",
+      "k_total": 23,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Total failure: day 28 (polymerase chain reaction-adjusted)"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A2",
+      "stratum": "enriched",
+      "k_total": 20,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Total failure: day 42 (polymerase chain reaction-adjusted)"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A3",
+      "stratum": "enriched",
+      "k_total": 32,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Total failure: day 28 (unadjusted)"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A4",
+      "stratum": "enriched",
+      "k_total": 31,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Total failure: day 42 (unadjusted)"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A5",
+      "stratum": "enriched",
+      "k_total": 31,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Early treatment failure"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A6",
+      "stratum": "enriched",
+      "k_total": 21,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Serious adverse events"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A7",
+      "stratum": "enriched",
+      "k_total": 20,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Adverse events leading to withdrawal"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A8",
+      "stratum": "enriched",
+      "k_total": 24,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "First treatment, alanine aminotransferase increase greater than five times the upper limit of normal"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A9",
+      "stratum": "enriched",
+      "k_total": 27,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "First treatment, aspartate aminotransferase increase greater than five times the upper limit of normal"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A10",
+      "stratum": "enriched",
+      "k_total": 124,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "First treatment, bilirubin increase greater than 2.5 times the upper limit of normal"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A11",
+      "stratum": "enriched",
+      "k_total": 5,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Subsequent treatment(s), alanine aminotransferase increase greater than five times the upper limit of normal"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A12",
+      "stratum": "enriched",
+      "k_total": 7,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Subsequent treatment(s), aspartate aminotransferase increase greater than five times the upper limit of normal"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A13",
+      "stratum": "enriched",
+      "k_total": 4,
+      "matched_keyword": "Mali",
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Subsequent treatment(s), bilirubin increase greater than 2.5 times the upper limit of normal"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A1",
+      "stratum": "enriched",
+      "k_total": 46,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Clinical malaria (grouped by presence of anaemia)"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A2",
+      "stratum": "enriched",
+      "k_total": 22,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Clinical malaria (grouped by age)"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A3",
+      "stratum": "enriched",
+      "k_total": 23,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Clinical malaria (<i>P falciparum</i> only)"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A4",
+      "stratum": "enriched",
+      "k_total": 8,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Clinical malaria with high-grade parasitaemia or requiring admission"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A7",
+      "stratum": "enriched",
+      "k_total": 28,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Malaria parasitaemia, end of treatment (by anaemia at baseline)"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A8",
+      "stratum": "enriched",
+      "k_total": 13,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Malaria parasitaemia, end of treatment (by age)"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A9",
+      "stratum": "enriched",
+      "k_total": 8,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Malaria parasitaemia, end of treatment (<i>P falciparum</i> only)"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A10",
+      "stratum": "enriched",
+      "k_total": 9,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Malaria parasitaemia, end of treatment (by allocation concealment)"
+    },
+    {
+      "ma_id": "CD006589_pub5_data__A11",
+      "stratum": "enriched",
+      "k_total": 7,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006589_pub5_data.rda",
+      "analysis_name": "Malaria parasitaemia, end of follow-up"
+    },
+    {
+      "ma_id": "CD006689_pub3_data__A4",
+      "stratum": "enriched",
+      "k_total": 16,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006689_pub3_data.rda",
+      "analysis_name": "Placental malaria (any test)"
+    },
+    {
+      "ma_id": "CD006689_pub3_data__A5",
+      "stratum": "enriched",
+      "k_total": 15,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006689_pub3_data.rda",
+      "analysis_name": "Placental malaria (blood smear)"
+    },
+    {
+      "ma_id": "CD006689_pub3_data__A6",
+      "stratum": "enriched",
+      "k_total": 13,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006689_pub3_data.rda",
+      "analysis_name": "Placental malaria (amplification techniques)"
+    },
+    {
+      "ma_id": "CD006689_pub3_data__A7",
+      "stratum": "enriched",
+      "k_total": 17,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006689_pub3_data.rda",
+      "analysis_name": "Placental malaria (histopathologic analysis)"
+    },
+    {
+      "ma_id": "CD006689_pub3_data__A9",
+      "stratum": "enriched",
+      "k_total": 14,
+      "matched_keyword": "malaria",
+      "rda_filename": "CD006689_pub3_data.rda",
+      "analysis_name": "Clinical malaria episodes during pregnancy"
+    },
+    {
+      "ma_id": "CD013303_pub2_data__A1",
+      "stratum": "enriched",
+      "k_total": 11,
+      "matched_keyword": "HIV",
+      "rda_filename": "CD013303_pub2_data.rda",
+      "analysis_name": "HIV health literacy: understanding HIV terms (short-term: immediately post-intervention)"
+    },
+    {
+      "ma_id": "CD013303_pub2_data__A2",
+      "stratum": "enriched",
+      "k_total": 9,
+      "matched_keyword": "HIV",
+      "rda_filename": "CD013303_pub2_data.rda",
+      "analysis_name": "HIV health literacy: recognition of HIV terms (short-term: immediately post-intervention)"
+    },
+    {
+      "ma_id": "CD013303_pub2_data__A3",
+      "stratum": "enriched",
+      "k_total": 13,
+      "matched_keyword": "HIV",
+      "rda_filename": "CD013303_pub2_data.rda",
+      "analysis_name": "Health-related knowledge: HIV global disease/treatment knowledge, 0 to 100 (short-term: immediately post-intervention)"
+    },
+    {
+      "ma_id": "CD013303_pub2_data__A4",
+      "stratum": "enriched",
+      "k_total": 12,
+      "matched_keyword": "HIV",
+      "rda_filename": "CD013303_pub2_data.rda",
+      "analysis_name": "Health-related knowledge: HIV knowledge, risk of getting sicker (short-term: immediately post-intervention)"
+    },
+    {
+      "ma_id": "CD014573_data__A1",
+      "stratum": "enriched",
+      "k_total": 3,
+      "matched_keyword": "cholera",
+      "rda_filename": "CD014573_data.rda",
+      "analysis_name": "Cases of cholera (2 doses + booster dose; 2-year follow-up; per-protocol analysis)"
+    },
+    {
+      "ma_id": "CD014573_data__A2",
+      "stratum": "enriched",
+      "k_total": 4,
+      "matched_keyword": "cholera",
+      "rda_filename": "CD014573_data.rda",
+      "analysis_name": "Cases of cholera (2 doses ± booster dose; 5-month and 2-year follow-up; per-protocol analysis)"
+    },
+    {
+      "ma_id": "CD015364_pub2_data__A41",
+      "stratum": "enriched",
+      "k_total": 15,
+      "matched_keyword": "HIV",
+      "rda_filename": "CD015364_pub2_data.rda",
+      "analysis_name": "Specific adverse events: sexual behaviour: HIV infection"
+    },
+    {
+      "ma_id": "CD015701_pub2_data__A1",
+      "stratum": "enriched",
+      "k_total": 5,
+      "matched_keyword": "HIV",
+      "rda_filename": "CD015701_pub2_data.rda",
+      "analysis_name": "HIV acquisition"
+    },
+    {
+      "ma_id": "CD016347_data__A1",
+      "stratum": "enriched",
+      "k_total": 6,
+      "matched_keyword": "HIV",
+      "rda_filename": "CD016347_data.rda",
+      "analysis_name": "New HIV infections"
+    },
+    {
+      "ma_id": "CD015364_pub2_data__A32",
+      "stratum": "random",
+      "k_total": 34,
+      "matched_keyword": null,
+      "rda_filename": "CD015364_pub2_data.rda",
+      "analysis_name": "Adverse events"
+    },
+    {
+      "ma_id": "CD004508_pub5_data__A9",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD004508_pub5_data.rda",
+      "analysis_name": "Time to the first passage of stool"
+    },
+    {
+      "ma_id": "CD015003_pub2_data__A1",
+      "stratum": "random",
+      "k_total": 9,
+      "matched_keyword": null,
+      "rda_filename": "CD015003_pub2_data.rda",
+      "analysis_name": "All-cause mortality"
+    },
+    {
+      "ma_id": "CD009730_pub3_data__A15",
+      "stratum": "random",
+      "k_total": 5,
+      "matched_keyword": null,
+      "rda_filename": "CD009730_pub3_data.rda",
+      "analysis_name": "Antibiotic resistance – number of participants isolating resistant strains"
+    },
+    {
+      "ma_id": "CD012712_pub2_data__A12",
+      "stratum": "random",
+      "k_total": 14,
+      "matched_keyword": null,
+      "rda_filename": "CD012712_pub2_data.rda",
+      "analysis_name": "Necrotising enterocolitis"
+    },
+    {
+      "ma_id": "CD007131_pub5_data__A3",
+      "stratum": "random",
+      "k_total": 23,
+      "matched_keyword": null,
+      "rda_filename": "CD007131_pub5_data.rda",
+      "analysis_name": "Completion"
+    },
+    {
+      "ma_id": "CD013342_pub2_data__A1",
+      "stratum": "random",
+      "k_total": 60,
+      "matched_keyword": null,
+      "rda_filename": "CD013342_pub2_data.rda",
+      "analysis_name": "Mean overall pain (0 to 10, 0 is no pain)"
+    },
+    {
+      "ma_id": "CD006404_pub5_data__A16",
+      "stratum": "random",
+      "k_total": 3,
+      "matched_keyword": null,
+      "rda_filename": "CD006404_pub5_data.rda",
+      "analysis_name": "Trials in children — total failure: day 28 (unadjusted)"
+    },
+    {
+      "ma_id": "CD006140_pub3_data__A1",
+      "stratum": "random",
+      "k_total": 10,
+      "matched_keyword": null,
+      "rda_filename": "CD006140_pub3_data.rda",
+      "analysis_name": "Any illicit opioid use (urine drug screen)"
+    },
+    {
+      "ma_id": "CD016347_data__A5",
+      "stratum": "random",
+      "k_total": 6,
+      "matched_keyword": null,
+      "rda_filename": "CD016347_data.rda",
+      "analysis_name": "All-cause mortality"
+    },
+    {
+      "ma_id": "CD001396_pub4_data__A16",
+      "stratum": "random",
+      "k_total": 7,
+      "matched_keyword": null,
+      "rda_filename": "CD001396_pub4_data.rda",
+      "analysis_name": "Physical symptoms"
+    },
+    {
+      "ma_id": "CD006689_pub3_data__A11",
+      "stratum": "random",
+      "k_total": 15,
+      "matched_keyword": null,
+      "rda_filename": "CD006689_pub3_data.rda",
+      "analysis_name": "Maternal severe anaemia at delivery (< 7 g/dL)"
+    },
+    {
+      "ma_id": "CD014722_pub2_data__A13",
+      "stratum": "random",
+      "k_total": 13,
+      "matched_keyword": null,
+      "rda_filename": "CD014722_pub2_data.rda",
+      "analysis_name": "Depressive symptoms at 7-24 months"
+    },
+    {
+      "ma_id": "CD009733_pub4_data__A5",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD009733_pub4_data.rda",
+      "analysis_name": "Number with thromboembolism – arterial&nbsp;"
+    },
+    {
+      "ma_id": "CD004667_pub6_data__A24",
+      "stratum": "random",
+      "k_total": 12,
+      "matched_keyword": null,
+      "rda_filename": "CD004667_pub6_data.rda",
+      "analysis_name": "Fetal loss before 24 weeks gestation"
+    },
+    {
+      "ma_id": "CD004736_pub6_data__A53",
+      "stratum": "random",
+      "k_total": 21,
+      "matched_keyword": null,
+      "rda_filename": "CD004736_pub6_data.rda",
+      "analysis_name": "Maternal anaemia at or near term (Hb less than 110 g/L at 34 weeks' gestation or more) (ALL)"
+    },
+    {
+      "ma_id": "CD015383_pub2_data__A4",
+      "stratum": "random",
+      "k_total": 5,
+      "matched_keyword": null,
+      "rda_filename": "CD015383_pub2_data.rda",
+      "analysis_name": "Depression on different scales (BDI, HADS-D), SMD"
+    },
+    {
+      "ma_id": "CD007674_pub3_data__A6",
+      "stratum": "random",
+      "k_total": 14,
+      "matched_keyword": null,
+      "rda_filename": "CD007674_pub3_data.rda",
+      "analysis_name": "Clinical recovery or improvement - GAD versus mixed anxiety disorders"
+    },
+    {
+      "ma_id": "CD011866_pub3_data__A7",
+      "stratum": "random",
+      "k_total": 19,
+      "matched_keyword": null,
+      "rda_filename": "CD011866_pub3_data.rda",
+      "analysis_name": "Longest period of abstinence"
+    },
+    {
+      "ma_id": "CD014967_pub2_data__A11",
+      "stratum": "random",
+      "k_total": 3,
+      "matched_keyword": null,
+      "rda_filename": "CD014967_pub2_data.rda",
+      "analysis_name": "Duration of hospital stay"
+    },
+    {
+      "ma_id": "CD013284_pub2_data__A8",
+      "stratum": "random",
+      "k_total": 3,
+      "matched_keyword": null,
+      "rda_filename": "CD013284_pub2_data.rda",
+      "analysis_name": "Rate of moderate exacerbation"
+    },
+    {
+      "ma_id": "CD000402_pub5_data__A6",
+      "stratum": "random",
+      "k_total": 23,
+      "matched_keyword": null,
+      "rda_filename": "CD000402_pub5_data.rda",
+      "analysis_name": "Additional investigations (unscheduled biopsy)"
+    },
+    {
+      "ma_id": "CD011793_pub3_data__A13",
+      "stratum": "random",
+      "k_total": 9,
+      "matched_keyword": null,
+      "rda_filename": "CD011793_pub3_data.rda",
+      "analysis_name": "Postoperative atrial fibrillation"
+    },
+    {
+      "ma_id": "CD008176_pub3_data__A10",
+      "stratum": "random",
+      "k_total": 83,
+      "matched_keyword": null,
+      "rda_filename": "CD008176_pub3_data.rda",
+      "analysis_name": "Change in eGFR"
+    },
+    {
+      "ma_id": "CD015284_pub2_data__A1",
+      "stratum": "random",
+      "k_total": 19,
+      "matched_keyword": null,
+      "rda_filename": "CD015284_pub2_data.rda",
+      "analysis_name": "Seizure frequency per month"
+    },
+    {
+      "ma_id": "CD006023_pub4_data__A23",
+      "stratum": "random",
+      "k_total": 14,
+      "matched_keyword": null,
+      "rda_filename": "CD006023_pub4_data.rda",
+      "analysis_name": "Serum bicarbonate"
+    },
+    {
+      "ma_id": "CD015875_data__A11",
+      "stratum": "random",
+      "k_total": 6,
+      "matched_keyword": null,
+      "rda_filename": "CD015875_data.rda",
+      "analysis_name": "Waist-to-hip ratio (10 to 19 years)"
+    },
+    {
+      "ma_id": "CD015215_pub2_data__A48",
+      "stratum": "random",
+      "k_total": 9,
+      "matched_keyword": null,
+      "rda_filename": "CD015215_pub2_data.rda",
+      "analysis_name": "Generic health-related quality of life: TAIQOL (medium-term)"
+    },
+    {
+      "ma_id": "CD006023_pub4_data__A21",
+      "stratum": "random",
+      "k_total": 16,
+      "matched_keyword": null,
+      "rda_filename": "CD006023_pub4_data.rda",
+      "analysis_name": "Serum iPTH"
+    },
+    {
+      "ma_id": "CD011225_pub2_data__A12",
+      "stratum": "random",
+      "k_total": 3,
+      "matched_keyword": null,
+      "rda_filename": "CD011225_pub2_data.rda",
+      "analysis_name": "Sensitivity analysis (allocation concealment versus all) pain short-term follow-up&nbsp;"
+    },
+    {
+      "ma_id": "CD014852_pub2_data__A18",
+      "stratum": "random",
+      "k_total": 5,
+      "matched_keyword": null,
+      "rda_filename": "CD014852_pub2_data.rda",
+      "analysis_name": "Complications (infections: pneumonia, urinary tract, and septicaemias) during intervention phase"
+    },
+    {
+      "ma_id": "CD015014_pub2_data__A12",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD015014_pub2_data.rda",
+      "analysis_name": "Unplanned hospital admissions (logarithm of rate ratio)"
+    },
+    {
+      "ma_id": "CD002112_pub2_data__A3",
+      "stratum": "random",
+      "k_total": 23,
+      "matched_keyword": null,
+      "rda_filename": "CD002112_pub2_data.rda",
+      "analysis_name": "Mean number of wet nights at follow-up"
+    },
+    {
+      "ma_id": "CD014541_pub2_data__A1",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD014541_pub2_data.rda",
+      "analysis_name": "Symptomatic VTE: short-term (45 days or fewer)"
+    },
+    {
+      "ma_id": "CD001059_pub6_data__A72",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD001059_pub6_data.rda",
+      "analysis_name": "Stillbirth: subgroup analysis - high dose versus low dose"
+    },
+    {
+      "ma_id": "CD015122_pub2_data__A20",
+      "stratum": "random",
+      "k_total": 3,
+      "matched_keyword": null,
+      "rda_filename": "CD015122_pub2_data.rda",
+      "analysis_name": "Thromboembolic events (Sensitivity analysis & definition of stone freedom)"
+    },
+    {
+      "ma_id": "CD008112_pub3_data__A6",
+      "stratum": "random",
+      "k_total": 205,
+      "matched_keyword": null,
+      "rda_filename": "CD008112_pub3_data.rda",
+      "analysis_name": "Functional status"
+    },
+    {
+      "ma_id": "CD014040_pub2_data__A2",
+      "stratum": "random",
+      "k_total": 8,
+      "matched_keyword": null,
+      "rda_filename": "CD014040_pub2_data.rda",
+      "analysis_name": "Live birth per participant randomized (all studies)"
+    },
+    {
+      "ma_id": "CD013344_pub2_data__A11",
+      "stratum": "random",
+      "k_total": 7,
+      "matched_keyword": null,
+      "rda_filename": "CD013344_pub2_data.rda",
+      "analysis_name": "Donor-specific antibodies"
+    },
+    {
+      "ma_id": "CD014845_pub2_data__A1",
+      "stratum": "random",
+      "k_total": 21,
+      "matched_keyword": null,
+      "rda_filename": "CD014845_pub2_data.rda",
+      "analysis_name": "Food selection/purchasing (kcal)"
+    },
+    {
+      "ma_id": "CD006689_pub3_data__A22",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD006689_pub3_data.rda",
+      "analysis_name": "Undetectable viral load"
+    },
+    {
+      "ma_id": "CD012067_pub3_data__A20",
+      "stratum": "random",
+      "k_total": 3,
+      "matched_keyword": null,
+      "rda_filename": "CD012067_pub3_data.rda",
+      "analysis_name": "Proteinuria [g/24 hours]"
+    },
+    {
+      "ma_id": "CD013715_pub2_data__A19",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD013715_pub2_data.rda",
+      "analysis_name": "PedACR50 at up to 16 weeks "
+    },
+    {
+      "ma_id": "CD014769_pub2_data__A25",
+      "stratum": "random",
+      "k_total": 8,
+      "matched_keyword": null,
+      "rda_filename": "CD014769_pub2_data.rda",
+      "analysis_name": "Subgroup analysis for renal disorders stratified by types of statins"
+    },
+    {
+      "ma_id": "CD013810_pub2_data__A1",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD013810_pub2_data.rda",
+      "analysis_name": "Sleepiness (Epworth Sleepiness Scale)"
+    },
+    {
+      "ma_id": "CD006140_pub3_data__A7",
+      "stratum": "random",
+      "k_total": 14,
+      "matched_keyword": null,
+      "rda_filename": "CD006140_pub3_data.rda",
+      "analysis_name": "Any non-serious adverse event"
+    },
+    {
+      "ma_id": "CD006714_pub3_data__A14",
+      "stratum": "random",
+      "k_total": 3,
+      "matched_keyword": null,
+      "rda_filename": "CD006714_pub3_data.rda",
+      "analysis_name": "Psychological impact: Impact of Event Scale (IES)"
+    },
+    {
+      "ma_id": "CD004376_pub4_data__A1",
+      "stratum": "random",
+      "k_total": 234,
+      "matched_keyword": null,
+      "rda_filename": "CD004376_pub4_data.rda",
+      "analysis_name": "Knee pain severity immediately post-intervention"
+    },
+    {
+      "ma_id": "CD014585_pub2_data__A2",
+      "stratum": "random",
+      "k_total": 25,
+      "matched_keyword": null,
+      "rda_filename": "CD014585_pub2_data.rda",
+      "analysis_name": "Global symptoms of dyspepsia (continuous)"
+    },
+    {
+      "ma_id": "CD006913_pub3_data__A12",
+      "stratum": "random",
+      "k_total": 61,
+      "matched_keyword": null,
+      "rda_filename": "CD006913_pub3_data.rda",
+      "analysis_name": "Quality of life (short-term), by therapy intensity - psychotherapy vs care-as-usual"
+    },
+    {
+      "ma_id": "CD013284_pub2_data__A16",
+      "stratum": "random",
+      "k_total": 5,
+      "matched_keyword": null,
+      "rda_filename": "CD013284_pub2_data.rda",
+      "analysis_name": "Mortality (respiratory), risk difference"
+    },
+    {
+      "ma_id": "CD003598_pub3_data__A4",
+      "stratum": "random",
+      "k_total": 30,
+      "matched_keyword": null,
+      "rda_filename": "CD003598_pub3_data.rda",
+      "analysis_name": "eGFR [mL/min/1.73 m²]"
+    },
+    {
+      "ma_id": "CD014666_pub2_data__A1",
+      "stratum": "random",
+      "k_total": 28,
+      "matched_keyword": null,
+      "rda_filename": "CD014666_pub2_data.rda",
+      "analysis_name": "Fear of falling: subgrouped according to intervention approach"
+    },
+    {
+      "ma_id": "CD007079_pub4_data__A1",
+      "stratum": "random",
+      "k_total": 20,
+      "matched_keyword": null,
+      "rda_filename": "CD007079_pub4_data.rda",
+      "analysis_name": "Preterm birth < 37 weeks' gestation"
+    },
+    {
+      "ma_id": "CD013294_pub2_data__A7",
+      "stratum": "random",
+      "k_total": 4,
+      "matched_keyword": null,
+      "rda_filename": "CD013294_pub2_data.rda",
+      "analysis_name": "Hypoxic episodes during study period"
+    }
+  ]
+}
