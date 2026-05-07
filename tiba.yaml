@@ -6,10 +6,10 @@ status: operational
 owning_repo: mahmood726-cyber/arac
 pages_url: https://mahmood726-cyber.github.io/arac/
 headline_metric:
-  label: "Tier-P inter-classifier consistency (Cohen's κ): claude-opus-4-7 production classifier vs claude-sonnet-4-6 blinded judge, n=30 Pairwise70 trials"
-  value: "1.000"
-  ci_or_qualifier: "κ=1.000, n_evaluable=9; 21/30 Insufficient (R9 PMID errors + geography-silent abstracts); sens-proxy 100% (CI 34.2-100%, n=2); LLM-vs-LLM not human gold standard; v0.2 human IRR pending; OTS amend-2"
-  source: "arac v0.1.1 (2026-05-06)"
+  label: "Tier-P RGS on v0.1.1 audit subset (n=21 MAs from 30 audited trials): full vs African-majority subset pooled estimates"
+  value: "0%"
+  ci_or_qualifier: "all 21 MAs invisible (k_subset<3); 2/21 have k_subset=1; kappa=1.000 calibration (v0.1.1) carries; v0.2 pilot (n=100) and v0.3 full (n=6386) follow"
+  source: "arac v0.1.3 (2026-05-06)"
 contact:
   steward: mahmood726-cyber
   cohort: makerere
