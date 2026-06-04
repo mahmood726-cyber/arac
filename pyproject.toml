@@ -8,6 +8,7 @@ version = "0.0.1"
 description = "African Representation Atlas of Cochrane — engine substrate"
 requires-python = ">=3.11"
 dependencies = [
+    "aact-kit>=0.1.0",
     "numpy>=1.26",
     "pyreadr>=0.5",
     "scipy>=1.11",
