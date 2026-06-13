@@ -11,7 +11,7 @@ a thin compatibility shim so existing imports keep working:
 ever resolves POSTGRES / SQLITE / TSV_DIR / CSV_DIR via env vars or snapshot
 auto-discovery, so behavior for arac is unchanged.
 
-Install: ``pip install aact-kit`` (or ``pip install -e C:/Projects/aact-kit``).
+Install: ``pip install aact-kit`` (or ``pip install -e`` against a local checkout).
 """
 
 from __future__ import annotations
